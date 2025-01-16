@@ -59,6 +59,12 @@ private:
 	Pet* pet;
 };
 
+int& Temp()
+{
+	int aInt = 1;
+	return aInt;
+}
+
 int main()
 {
 	int aInt = 1;
@@ -67,8 +73,12 @@ int main()
 	int& ref = aInt;
 	ref = 3233;
 
+	int& ref2 = Temp();
+	
+	ref2 = 123;
+		
 	// player1에서 player2 로 이사
-	Player* player1 = new Player();
+	Player* player1 = new Player(std::move(Player()));
 	Player* player2 = new Player(std::move(*player1)); // 이동개념 : 이사
 	// Player* player2 = new Player(static_cast<Player&&>(*player1));	
 
