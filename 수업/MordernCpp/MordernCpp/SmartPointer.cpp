@@ -18,7 +18,7 @@ class Shared_ptr
 public:
 	Shared_ptr() = default;
 	Shared_ptr(T* ptr)
-		:_ptr(ptr)
+	:_ptr(ptr)
 	{
 		_block = new RefCountBlock();
 		cout << "RefCount : " << _block->refCount << endl;
@@ -68,13 +68,13 @@ public:
 		if (_ptr != nullptr)
 		{
 			_block->refCount++;
-			cout << "refCount : " << _block->refCount << endl;
+			cout << "RefCount : " << _block->refCount << endl;
 		}
 
 		return *this;
 	}
 
-	Shared_ptr<T>& operator= (std::nullptr_t)
+	Shared_ptr<T>& operator=(std::nullptr_t)
 	{
 		_block->refCount--;
 		_ptr = nullptr;
@@ -105,7 +105,7 @@ public:
 	{
 		if (target.expired() == false)
 		{
-			target->lock()->_hp -= _atk;
+			target.lock()->_hp -= _atk;
 			cout << "Attack " << endl;
 		}
 	}
@@ -137,8 +137,8 @@ int main()
 	// (*myShared2).target = nullptr;
 
 
-	Shared_ptr<Player> myShared1 = make_shared<Player>();
-	Shared_ptr<Player> myShared2 = make_shared<Player>();
+	shared_ptr<Player> myShared1 = make_shared<Player>();
+	shared_ptr<Player> myShared2 = make_shared<Player>();
 
 	myShared1->target = myShared2;
 	myShared2->target = myShared1;
@@ -148,7 +148,10 @@ int main()
 	// - 보통 target으로 물고 있을 때 쓴다. => 멤버변수 다른 포인터를 가리키고 있는 것
 
 	// unique_ptr
-	unique_ptr<Player> uPtr = make_shared <Player>();
+	unique_ptr<Player> uPtr = make_unique<Player>();
+
+	vector<Player*> v1;
+	vector<shared_ptr<Player>> v2;
 
 	
 
