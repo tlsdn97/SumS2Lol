@@ -5,7 +5,7 @@
 
 Monster::Monster(int hp, int atk)
 	:Creature(hp,atk)
-{s
+{
 }
 
 Monster::~Monster()

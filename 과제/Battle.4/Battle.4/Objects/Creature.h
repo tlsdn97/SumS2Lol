@@ -1,10 +1,11 @@
+
 class Creature
 {
 public:
 	Creature(int hp, int atk);
 	~Creature();
 
-	virtual void Attack(Creature* other);
+	void Attack(Creature* other);
 	void TakeDamage(int amount);
 
 	bool IsDead();

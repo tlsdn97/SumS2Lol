@@ -13,8 +13,7 @@ Creature::~Creature()
 
 void Creature::Attack(Creature* other)
 {
-	// TODO : 구현여부 결정
-	other->TakeDamage(_atk);
+
 }
 
 void Creature::TakeDamage(int amount)

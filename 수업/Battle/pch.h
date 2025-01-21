@@ -16,6 +16,18 @@
 // 3. $(ProjectDir) -> »Æ¿Œ
 
 #include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+
+
+#include <string>
+
+#include "Creature/Creature.h"
+#include "Creature/Player.h"
+#include "Creature/Knight.h"
+#include "Creature/Goblin.h"
+#include "Creature/Archer.h"
 
 using namespace std;
 

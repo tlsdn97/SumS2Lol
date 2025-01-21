@@ -1,2 +1,5 @@
 #include "pch.h"
+#include "Creature.h"
+#include "Player.h"
+#include "Goblin.h"
 #include "Knight.h"
