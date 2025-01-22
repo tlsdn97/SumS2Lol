@@ -65,5 +65,41 @@ bool RectCollider::IsCollision(shared_ptr<RectCollider> other)
 
 bool RectCollider::IsCollision(shared_ptr<CircleCollider> other)
 {
-	return false;
+	Vector circleCenter = other->GetCenter();
+	float radius = other->Radius();
+	float length = (circleCenter - _center).Length();
+
+	if (circleCenter.x < Right() && circleCenter.x > Left())
+	{
+		float result = 0.0f;
+		if (circleCenter.y > _center.y)
+			result = circleCenter.y - _center.y;
+		else
+			result = _center.y - circleCenter.y;
+
+		return result < radius + _halfSize.y;
+	}
+
+		if (circleCenter.y < Bottom() && circleCenter.y > Top())
+		{
+			float result = 0.0f;
+			if (circleCenter.x > _center.x) 
+				result = circleCenter.x - _center.x;
+			else
+				result = _center.x - circleCenter.x;
+
+			return result < radius + _halfSize.x;
+		}
+
+		Vector leftTop = Vector(Left(), Top());
+		Vector rightTop = Vector(Right(), Top());
+		Vector leftBottom = Vector(Left(), Bottom());
+		Vector rightBottom = Vector(Right(), Bottom());
+
+		bool check1 = other->IsCollision(leftTop);
+		bool check2 = other->IsCollision(rightTop);
+		bool check3 = other->IsCollision(leftBottom);
+		bool check4 = other->IsCollision(rightBottom);
+
+		return check1 || check2 || check3 || check4;
 }

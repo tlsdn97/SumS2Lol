@@ -51,7 +51,32 @@ bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 
 bool CircleCollider::IsCollision(shared_ptr<RectCollider> other)
 {
-	// TODO : 원 사각형 충돌 구현
+   // float circleCenterX = this->_center.x;
+   // float circleCenterY = this->_center.y;
+   // float circleRadius = this->_radius;
+   // 
+   // float rectLeft = other->Left();
+   // 
+   // 
+   //     float rectRight = other->Right();
+   // float rectTop = other->Top();
+   // 
+   // 
+   //     float rectBottom = other->Bottom();
+   // 
+   // 
+   // float closestX = std::max(rectLeft, std::min(circleCenterX, rectRight));
+   // float closestY = std::max(rectTop, std::min(circleCenterY, rectBottom));
+   // 
+   // 
+   // float distanceX = circleCenterX - closestX;
+   // float distanceY = circleCenterY - closestY;
+   // 
+   // 
+   // float distanceSquared = distanceX * distanceX + distanceY * distanceY;
+   // 
+   // 
+   // return distanceSquared <= (circleRadius * circleRadius);
 
 	return false;
 }

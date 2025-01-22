@@ -1,5 +1,5 @@
 #pragma once
-class CircleCollider
+class CircleCollider 
 {
 public:
 	CircleCollider(Vector center, float radius);
@@ -18,7 +18,13 @@ public:
 	void SetGreen() { _curPen = 0; }
 	void SetRed() { _curPen = 1; }
 
+	
+
+	float Radius() { return _radius; }
+
 private:
+
+
 	UINT					_curPen = 0;
 	vector<HPEN>			_pens;
 

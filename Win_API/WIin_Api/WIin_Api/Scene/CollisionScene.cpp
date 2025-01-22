@@ -17,12 +17,12 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
-	//_movingCircle->SetCenter(mousePos);
+	_movingCircle->SetCenter(mousePos);
 	// movingRect 움직이기
 	_movingRect->SetCenter(mousePos);
 
 	// rect와 movingrect 충돌판정해서 색바꾸기
-	if (_rect->IsCollision(_movingRect))
+	if (_rect->IsCollision(_movingCircle))
 	{
 		_rect->SetRed();
 	}
@@ -32,7 +32,7 @@ void CollisionScene::Update()
 	}
 
 
-	if (_circle->IsCollision(_movingCircle))
+	if (_circle->IsCollision(_movingRect))
 	{
 		_circle->SetRed();
 	}
