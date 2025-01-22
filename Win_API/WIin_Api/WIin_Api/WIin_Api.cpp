@@ -90,6 +90,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     return RegisterClassExW(&wcex);
 }
 
+
 //
 //   함수: InitInstance(HINSTANCE, int)
 //
@@ -102,20 +103,20 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
     hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
-   {
-      return FALSE;
-   }
+    if (!hWnd)
+    {
+        return FALSE;
+    }
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+    ShowWindow(hWnd, nCmdShow);
+    UpdateWindow(hWnd);
 
-   return TRUE;
+    return TRUE;
 }
 
 //
@@ -129,96 +130,76 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 
 // hWnd : 윈도우 핸들
-// => 윈도우에섭 ㅏㄹ생하는 일들을 제어하는ㅇ ㅒ
-// hdc : deviceConText handle
+// => 윈도우에서 발생하는 일들을 제어하는 얘
+// hdc : deviceContext Handle
 // => 연출가 => 우리가 그림그릴 때 모든 것을 담당하는 얘
 
-// => win_api를 공부하고 싶으면 운영체제 공부
+// => WIN_API를 공부하고 싶으면, 운영체제
+// ==> DirectX, 언리얼 실험적으로 공부
 
-// => DirectX, 언리얼 실험적을 공부
-
-// 윈도우에서 발생하는 메시지 차러히는 곳
+// 윈도우에서 발생하는 메시지를 처리하는 곳
 
 Vector mousePos;
-Vector circleCenter;
+shared_ptr<Program> program;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
     case WM_COMMAND:
+    {
+        int wmId = LOWORD(wParam);
+        // 메뉴 선택을 구문 분석합니다:
+        switch (wmId)
         {
-            int wmId = LOWORD(wParam);
-            // 메뉴 선택을 구문 분석합니다:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
+        case IDM_ABOUT:
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+            break;
+        case IDM_EXIT:
+            DestroyWindow(hWnd);
+            break;
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
         }
-        break;
+    }
+    break;
 
-     // 처음 창이 생성됬을 때 나오는 메시지   
+    // 처음 창이 생성됬을 때 나오는 메시지
     case WM_CREATE:
     {
-        SetTimer(hWnd, 1, 1, nullptr); // 1ms WM_TIMER msg 생성
+        program = make_shared<Program>();
+        SetTimer(hWnd, 1, 1, nullptr); // 1ms 마다 WM_TIMER msg 생성
         break;
-
     }
 
-        // 타이머(Delay) 설정하면 Delay마다 WM_TIMER메시지 호출
+    // 타이머를(Delay) 설정하면 Delay마다 WM_TIMER메시지 호출
     case WM_TIMER:
     {
-        InvalidateRect(hWnd, nullptr, false);
+        program->Update();
+        InvalidateRect(hWnd, nullptr, true); // WM_PAINT 메시지와 관련있는 얘
+
         break;
     }
 
-        
     case WM_MOUSEMOVE:
     {
         mousePos.x = static_cast<float>(LOWORD(lParam));
         mousePos.y = static_cast<float>(HIWORD(lParam));
-    
+
         break;
     }
 
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
-            // 매개변수 정수인자 => 픽셀단위
+        program->Render(hdc);
 
-
-           
-           // circleCenter.x = circleCenter.x + mousePos.x;
-           // circleCenter.y = circleCenter.y + mousePos.y;
-
-             //  천천히 따라오게?
-            // 선형 보간 = s + (e - s) *t;
-            circleCenter = LERP(circleCenter, mousePos, 0.02f);
-
-            // 원그리기
-            Ellipse(hdc,circleCenter.x -35, circleCenter.y -35, circleCenter.x +35, circleCenter.y + 35);  // 반지름 : 70
-
-            // 사각형 그리기
-            Rectangle(hdc, mousePos.x -25, mousePos.y -25, mousePos.x +25, mousePos.y +25);  // 크기 50,50
-            
-
-            // 선그리기
-            MoveToEx(hdc, 450, 350,nullptr);  // 시작
-            LineTo(hdc,mousePos.x,mousePos.y); // 끝점
-
-            EndPaint(hWnd, &ps);
-        }
-        break;
+        EndPaint(hWnd, &ps);
+    }
+    break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

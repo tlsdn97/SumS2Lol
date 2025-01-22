@@ -21,7 +21,21 @@
 
 using namespace std;
 
+// Macro
+#include "GMacro.h"
+
+// Math
 #include "Math/Vector.h"
 
+#include "Math/Collider/CircleCollider.h"
+#include "Math/Collider/RectCollider.h"
 
-#define LERP(s,e,t) s + (e - s) * t
+// Scene
+#include "Scene/Scene.h"
+
+// Program
+#include "Program/Program.h"
+
+extern Vector mousePos;
+extern HWND hWnd;
+
