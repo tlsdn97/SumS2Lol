@@ -7,16 +7,9 @@
 CannonScene::CannonScene()
 {
 	_cannon = make_shared<Cannon>();
-	_cannon->SetPos(Vector(300, 500));
 
 	_cannon2 = make_shared<Cannon>();
-	_cannon2->SetPos(Vector(700, 500));
-
-	_cannon->Update();
-	_cannon->Move();
-
-	_cannon2->Update();
-	_cannon2->Move();
+	
 
 }
 

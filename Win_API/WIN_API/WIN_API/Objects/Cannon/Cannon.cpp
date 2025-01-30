@@ -29,6 +29,9 @@ void Cannon::Update()
 	_body->Update();
 	_barrel->Update();
 
+	if (IsDead())
+		return;
+
 	for (auto ball : _balls)
 	{
 		ball->Update();
@@ -129,4 +132,9 @@ void Cannon::TakeDamage(int amount)
 		isActive = false;
 		_hp = 0;
 	}
+}
+
+bool Cannon::IsDead()
+{
+	return _hp <= 0;
 }

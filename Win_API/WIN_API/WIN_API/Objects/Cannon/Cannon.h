@@ -23,6 +23,8 @@ public:
 
 	bool IsCollision_Ball(shared_ptr<Ball> ball);
 	void TakeDamage(int amount);
+	
+	bool IsDead();
 
 	bool isActive;
 
