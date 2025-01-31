@@ -42,9 +42,10 @@ void Ball::Fire(Vector dir)
 	_dir = dir.NormalVector();
 }
 
-void Ball::AddForce(Vector v)
+void Ball::AddFVector(Vector v)
 {
 	if (isActive == false) return;
 
 	_circle->SetCenter(_circle->GetCenter() + v);
 }
+

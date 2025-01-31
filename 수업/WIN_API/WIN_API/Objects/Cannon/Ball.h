@@ -11,7 +11,7 @@ public:
 	void Fire(Vector dir);
 
 	void SetPos(Vector pos) { _circle->SetCenter(pos); }
-	void AddForce(Vector v);
+	void AddFVector(Vector v);
 
 	shared_ptr<CircleCollider> GetCollider() { return _circle; }
 
