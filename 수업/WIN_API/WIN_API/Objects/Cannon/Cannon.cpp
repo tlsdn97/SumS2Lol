@@ -26,27 +26,25 @@ Cannon::~Cannon()
 
 void Cannon::Update()
 {
+	if (_isActive == false) return;
+
+
 	_body->Update();
 	_barrel->Update();
 
 	for (auto ball : _balls)
 	{
 		ball->Update();
-
-		if (ball->isActive)
-		{
-			ball->AddForce(_ballDir * 3.0f);
-		}
 	}
 
 	_delay += 0.1f;
 
-	Fire();
-	Move();
 }
 
 void Cannon::Render(HDC hdc)
 {
+	if (_isActive == false) return;
+
 	_barrel->Render(hdc);
 	_body->Render(hdc);
 	
@@ -77,7 +75,7 @@ void Cannon::Move()
 	}
 }
 
-void Cannon::Fire()
+void Cannon::Fire(function<void(void)> fn)
 {
 	if (_delay < _attackSpeed)
 		return;
@@ -94,8 +92,25 @@ void Cannon::Fire()
 	if (GetKeyState(VK_SPACE) & 0x8000)
 	{
 		(*iter)->SetPos(_barrel->GetMuzzle());
-		_ballDir = _barrel->GetDir();
 		(*iter)->isActive = true;
 		_delay = 0.0f;
+
+		(*iter)->Fire(_barrel->GetDir());
+
+		if (fn != nullptr);
+		fn();
 	}
+}
+
+bool Cannon::IsCollision(shared_ptr<Ball> ball)
+{
+	if (_body->IsCollision(ball->GetCollider()))
+	{
+		ball->isActive = false;
+
+		_isActive = false;
+		return true;
+	}
+
+	return false;
 }
