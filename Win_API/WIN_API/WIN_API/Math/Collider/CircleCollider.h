@@ -1,5 +1,5 @@
 #pragma once
-class CircleCollider : public Collider
+class CircleCollider : public enable_shared_from_this<CircleCollider>, public Collider
 {
 public:
 	CircleCollider(Vector center, float radius);
@@ -7,7 +7,6 @@ public:
 
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
-
 
 	float GetRadius() { return _radius; }
 	void SetRadius(float radius) { _radius = radius; }
@@ -17,7 +16,6 @@ public:
 	virtual bool IsCollision(shared_ptr<class RectCollider> rect) override;
 
 private:
-
 	float					_radius;
 };
 

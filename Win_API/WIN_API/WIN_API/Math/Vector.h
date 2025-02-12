@@ -34,7 +34,7 @@ public:
 
 		return result;
 	}
-	Vector& operator=(const Vector& other) 
+	Vector& operator=(const Vector& other)
 	{
 		this->x = other.x;
 		this->y = other.y;
@@ -56,6 +56,21 @@ public:
 		return *this;
 	}
 
+	bool operator==(const Vector& other) const
+	{
+		if (x == other.x)
+		{
+			if (y == other.y)
+				return true;
+		}
+
+		return false;
+	}
+	bool operator!=(const Vector& other) const
+	{
+		return !this->operator==(other);
+	}
+
 	float Length() const
 	{
 		return sqrtf(this->x * this->x + this->y * this->y);
@@ -65,6 +80,11 @@ public:
 		float length = Length();
 		x /= length;
 		y /= length;
+	}
+	void Rotate(float theta)
+	{
+		x = x * cosf(theta) - y * sinf(theta);
+		y = x * sinf(theta) + y * cosf(theta);
 	}
 
 	Vector NormalVector() const
@@ -89,6 +109,12 @@ public:
 		float cross2 = this->Cross(v2);
 
 		return cross1 * cross2 < 0;
+	}
+	float ManhattanDistance(Vector pos)
+	{
+		Vector temp = pos - *this;
+
+		return abs(temp.x) + abs(temp.y);
 	}
 
 	float x;

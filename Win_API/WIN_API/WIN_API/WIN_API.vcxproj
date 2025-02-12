@@ -145,6 +145,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\ArkanoidScene.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaBar.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaBrick.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaMap.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaBall.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaItem.h" />
+    <ClInclude Include="Math\DisJointSet.h" />
     <ClInclude Include="Objects\Cannon\Ball.h" />
     <ClInclude Include="Objects\Cannon\Barrel.h" />
     <ClInclude Include="Objects\Cannon\Cannon.h" />
@@ -167,6 +174,12 @@
     <ClInclude Include="WIN_API.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\ArkanoidScene.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaBar.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaBrick.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaMap.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaBall.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaItem.cpp" />
     <ClCompile Include="Objects\Cannon\Ball.cpp" />
     <ClCompile Include="Objects\Cannon\Barrel.cpp" />
     <ClCompile Include="Objects\Cannon\Cannon.cpp" />

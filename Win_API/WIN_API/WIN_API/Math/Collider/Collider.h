@@ -2,42 +2,39 @@
 class CircleCollider;
 class RectCollider;
 
-class Collider : public enable_shared_from_this<Collider>
+class Collider
 {
 public:
+	enum class ColType
+	{
+		NONE,
+		CIRCLE,
+		RECT
+	};
+
 	Collider(Vector center);
-	~Collider();
+	virtual ~Collider();
 
 	virtual void Update() abstract;
 	virtual void Render(HDC hdc) abstract;
 
-	
 	bool IsCollision(shared_ptr<Collider> other);
-
-	
-
-	void SetGreen() { _curPen = 0; }
-	void SetRed() { _curPen = 1; }
-
-
 	virtual bool IsCollision(const Vector& pos) abstract;
-	virtual bool IsCollision(shared_ptr<CircleCollider> other) abstract;
-	virtual bool IsCollision(shared_ptr<class RectCollider> rect) abstract;
-
+	virtual bool IsCollision(shared_ptr<CircleCollider> other)abstract;
+	virtual bool IsCollision(shared_ptr<class RectCollider> rect)abstract;
 
 	Vector GetCenter() { return _center; }
 	void SetCenter(const Vector& pos) { _center = pos; }
 
-	Vector center;
+	void SetGreen() { _curPen = 1; }
+	void SetRed() { _curPen = 2; }
 
-	vector<HPEN> GetPens() { return _pens; }
-	UINT GetCurPen() { return _curPen; }
-
-
-private:
+protected:
 	UINT					_curPen = 0;
 	vector<HPEN>			_pens;
 
 	Vector					_center;
+
+	ColType					_type = ColType::NONE;
 };
 
