@@ -1,4 +1,4 @@
-#include "framework.h"
+ï»¿#include "framework.h"
 #include "Program.h"
 
 #include "Scene/PaintScene.h"
@@ -8,15 +8,15 @@
 #include "Scene/CannonScene.h"
 
 HDC Program::backbuffer = nullptr;
-
 Program::Program()
 {
+	_scene = make_shared<CollisionScene>();
 	_scene = make_shared<CannonScene>();
 
 	HDC hdc = GetDC(hWnd);
 
 	backbuffer = CreateCompatibleDC(hdc);
-	_hBitMap = CreateCompatibleBitmap(hdc, WIN_WIDTH, WIN_HEIGHT);  // ±×¸²À» ±×¸± µµÈ­Áö
+	_hBitMap = CreateCompatibleBitmap(hdc, WIN_WIDTH, WIN_HEIGHT);  // ê·¸ë¦¼ì„ ê·¸ë¦´ ë„í™”ì§€
 	SelectObject(backbuffer, _hBitMap);
 }
 
@@ -33,11 +33,12 @@ void Program::Update()
 
 void Program::Render(HDC hdc)
 {
+	_scene->Render(hdc);
 	PatBlt(backbuffer, 0, 0, WIN_WIDTH, WIN_HEIGHT, BLACKNESS);
 
-	_scene->Render(hdc);
-	
-	// º¹»ç
+	_scene->Render(backbuffer);
+
+	// ë³µì‚¬
 	BitBlt(hdc, 0, 0, WIN_WIDTH, WIN_HEIGHT,
 		backbuffer, 0, 0, SRCCOPY);
 }
