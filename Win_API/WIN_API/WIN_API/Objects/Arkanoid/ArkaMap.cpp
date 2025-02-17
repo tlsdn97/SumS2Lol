@@ -38,6 +38,7 @@ ArkaMap::~ArkaMap()
 }
 
 
+
 void ArkaMap::Update()
 {
 	for (auto bricks : _bricks)

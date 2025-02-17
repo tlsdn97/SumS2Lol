@@ -5,6 +5,7 @@
 #include "Objects/Arkanoid/ArkaBar.h"
 #include "Objects/Arkanoid/ArkaBrick.h"
 #include "Objects/Arkanoid/ArkaMap.h"
+#include "Objects/Arkanoid/Hp.h"
 
 ArkanoidScene::ArkanoidScene()
 {
@@ -12,6 +13,10 @@ ArkanoidScene::ArkanoidScene()
 	_map = make_shared<ArkaMap>();
 
 	_bar->Init();
+
+	_ui = make_shared<Hp>(CENTER + Vector(-450, -360), Vector(350, 20));
+
+	_ui->SetValue(0.5);
 	
 }
 
@@ -23,6 +28,7 @@ void ArkanoidScene::Update()
 {
 	_bar->Update();
 	_map->Update();
+	_ui->Update();
 
 	_bar->Input();
 	
@@ -39,4 +45,6 @@ void ArkanoidScene::Render(HDC hdc)
 {
 	_bar->Render(hdc);
 	_map->Render(hdc);
+
+	_ui->Render(hdc);
 }

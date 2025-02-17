@@ -70,8 +70,8 @@ void ArkaBar::Input()
 			auto ballIter = std::find_if(_balls.begin(), _balls.end(), [](shared_ptr<ArkaBall> a) -> bool
 				{
 					if (a->IsActive())
-						return false;
-					return true;
+						return true;
+					return false;
 				});
 			if (ballIter != _balls.end())
 				(*ballIter)->Fire(Vector(0, -1));

@@ -17,7 +17,7 @@ ArkaBall::~ArkaBall()
 void ArkaBall::Update()
 {
 	if (_isActive == false)
-		return;
+		return;             
 	_circle->Update();
 
 	_pos += _dir * _speed;

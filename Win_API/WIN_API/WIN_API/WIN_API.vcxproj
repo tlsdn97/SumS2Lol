@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Objects\Arkanoid\Hp.h" />
     <ClInclude Include="Scene\MazeScene.h" />
     <ClInclude Include="Objects\Maze\Maze.h" />
     <ClInclude Include="Objects\Maze\Block.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="WIN_API.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Objects\Arkanoid\Hp.cpp" />
     <ClCompile Include="Scene\MazeScene.cpp" />
     <ClCompile Include="Objects\Maze\Maze.cpp" />
     <ClCompile Include="Objects\Maze\Block.cpp" />

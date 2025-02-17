@@ -32,7 +32,6 @@ void ArkaBrick::Break_Brick()
 {
 	if (!_isActive)
 		return;
-
 }
 
 

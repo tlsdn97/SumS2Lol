@@ -17,5 +17,7 @@ public:
 private:
 	shared_ptr<ArkaMap> _map;
 	shared_ptr<ArkaBar> _bar;
+
+	shared_ptr<class Hp> _ui;
 };
 

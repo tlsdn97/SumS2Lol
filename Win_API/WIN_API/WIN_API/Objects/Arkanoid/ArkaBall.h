@@ -33,7 +33,7 @@ private:
 
 	Vector _pos = { 0,0 };
 	Vector _dir = { 0,0 };
-	float _speed = 5.0f;
+	float _speed = 7.0f;
 
 	weak_ptr<ArkaBar> _bar;
 

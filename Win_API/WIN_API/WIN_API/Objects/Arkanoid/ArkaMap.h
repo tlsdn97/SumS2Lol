@@ -10,8 +10,6 @@ public:
 	ArkaMap();
 	~ArkaMap();
 
-
-
 	void Update();
 	void Render(HDC hdc);
 
