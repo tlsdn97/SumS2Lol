@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "ArkaBrick.h"
-#include "ArkaItem.h"
+
 
 ArkaBrick::ArkaBrick(Vector size)
 {
@@ -28,18 +28,11 @@ void ArkaBrick::Render(HDC hdc)
 		_body->Render(hdc);
 }
 
-void ArkaBrick::SetItem(shared_ptr<ArkaItem> item)
-{
-	_item = item;
-	if (_item.expired())
-		return;
-
-	_item.lock()->Pos() = _pos;
-}
-
 void ArkaBrick::Break_Brick()
 {
-	_isActive = false;
-	if (!_item.expired())
-		_item.lock()->CanFalling() = true;
+	if (!_isActive)
+		return;
+
 }
+
+

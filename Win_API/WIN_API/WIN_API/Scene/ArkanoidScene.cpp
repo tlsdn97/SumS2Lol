@@ -12,7 +12,7 @@ ArkanoidScene::ArkanoidScene()
 	_map = make_shared<ArkaMap>();
 
 	_bar->Init();
-	_map->Init(_bar);
+	
 }
 
 ArkanoidScene::~ArkanoidScene()
@@ -32,7 +32,7 @@ void ArkanoidScene::Update()
 			continue;
 		_map->IsCollision_Bricks(ball);
 	}
-	_map->GetItems(_bar);
+	
 }
 
 void ArkanoidScene::Render(HDC hdc)

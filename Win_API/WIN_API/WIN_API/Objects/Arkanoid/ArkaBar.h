@@ -19,7 +19,7 @@ public:
 	shared_ptr<RectCollider> GetCollider() { return _body; }
 	vector<shared_ptr<ArkaBall>> GetBalls() { return _balls; }
 
-	void TwoBall_Skill();
+
 
 private:
 	float _delayTime = 0.0f;

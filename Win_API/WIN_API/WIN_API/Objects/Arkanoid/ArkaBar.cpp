@@ -79,14 +79,3 @@ void ArkaBar::Input()
 	}
 }
 
-void ArkaBar::TwoBall_Skill()
-{
-	auto iter = std::find_if(_balls.begin(), _balls.end(), [](shared_ptr < ArkaBall> ball)-> bool
-		{
-			if (ball->IsActive() == false)
-				return true;
-			return false;
-		});
-	if (iter != _balls.end())
-		(*iter)->IsActive() = true;
-}

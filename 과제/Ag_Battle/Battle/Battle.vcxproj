@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{58b344df-1694-4759-86de-0893e8f2275a}</ProjectGuid>
-    <RootNamespace>WINAPI</RootNamespace>
+    <ProjectGuid>{b517e52b-dc54-4135-9ab9-39de51114c85}</ProjectGuid>
+    <RootNamespace>Battle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -86,12 +86,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -101,12 +102,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -116,13 +118,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -132,70 +134,24 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Scene\MazeScene.h" />
-    <ClInclude Include="Objects\Maze\Maze.h" />
-    <ClInclude Include="Objects\Maze\Block.h" />
-    <ClInclude Include="Objects\Maze\Player.h" />
-    <ClInclude Include="Scene\ArkanoidScene.h" />
-    <ClInclude Include="Objects\Arkanoid\ArkaBar.h" />
-    <ClInclude Include="Objects\Arkanoid\ArkaBrick.h" />
-    <ClInclude Include="Objects\Arkanoid\ArkaMap.h" />
-    <ClInclude Include="Objects\Arkanoid\ArkaBall.h" />
-    <ClInclude Include="Math\DisJointSet.h" />
-    <ClInclude Include="Objects\Cannon\Ball.h" />
-    <ClInclude Include="Objects\Cannon\Barrel.h" />
-    <ClInclude Include="Objects\Cannon\Cannon.h" />
-    <ClInclude Include="Scene\CannonScene.h" />
-    <ClInclude Include="Math\Collider\Collider.h" />
-    <ClInclude Include="Scene\LineCollisionScene.h" />
-    <ClInclude Include="Math\Line.h" />
-    <ClInclude Include="Scene\LineScene.h" />
-    <ClInclude Include="Scene\CollisionScene.h" />
-    <ClInclude Include="GMacro.h" />
-    <ClInclude Include="Math\Collider\CircleCollider.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="Math\Collider\RectCollider.h" />
-    <ClInclude Include="Scene\PaintScene.h" />
-    <ClInclude Include="Program\Program.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="Scene\Scene.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="Math\Vector.h" />
-    <ClInclude Include="WIN_API.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Scene\MazeScene.cpp" />
-    <ClCompile Include="Objects\Maze\Maze.cpp" />
-    <ClCompile Include="Objects\Maze\Block.cpp" />
-    <ClCompile Include="Objects\Maze\Player.cpp" />
-    <ClCompile Include="Scene\ArkanoidScene.cpp" />
-    <ClCompile Include="Objects\Arkanoid\ArkaBar.cpp" />
-    <ClCompile Include="Objects\Arkanoid\ArkaBrick.cpp" />
-    <ClCompile Include="Objects\Arkanoid\ArkaMap.cpp" />
-    <ClCompile Include="Objects\Arkanoid\ArkaBall.cpp" />
-    <ClCompile Include="Objects\Cannon\Ball.cpp" />
-    <ClCompile Include="Objects\Cannon\Barrel.cpp" />
-    <ClCompile Include="Objects\Cannon\Cannon.cpp" />
-    <ClCompile Include="Scene\CannonScene.cpp" />
-    <ClCompile Include="Math\Collider\Collider.cpp" />
-    <ClCompile Include="Scene\LineCollisionScene.cpp" />
-    <ClCompile Include="Math\Line.cpp" />
-    <ClCompile Include="Scene\LineScene.cpp" />
-    <ClCompile Include="Scene\CollisionScene.cpp" />
-    <ClCompile Include="Math\Collider\CircleCollider.cpp" />
+    <ClCompile Include="Objects\Creature.cpp" />
+    <ClCompile Include="Objects\Goblin.cpp" />
+    <ClCompile Include="Objects\Monster.cpp" />
+    <ClCompile Include="Objects\Mage.cpp" />
+    <ClCompile Include="Objects\Archer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">framework.h</PrecompiledHeaderFile>
@@ -206,19 +162,24 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">framework.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Math\Vector.cpp" />
-    <ClCompile Include="Math\Collider\RectCollider.cpp" />
-    <ClCompile Include="Scene\PaintScene.cpp" />
-    <ClCompile Include="Program\Program.cpp" />
-    <ClCompile Include="Scene\Scene.cpp" />
-    <ClCompile Include="WIN_API.cpp" />
+    <ClCompile Include="Objects\Knight.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Objects\Player.cpp" />
+    <ClCompile Include="Map\World.cpp" />
+    <ClCompile Include="Objects\WarGoblin.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="WIN_API.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico" />
-    <Image Include="WIN_API.ico" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Objects\Creature.h" />
+    <ClInclude Include="Objects\Goblin.h" />
+    <ClInclude Include="Objects\Monster.h" />
+    <ClInclude Include="Objects\Mage.h" />
+    <ClInclude Include="Objects\Archer.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="Objects\Knight.h" />
+    <ClInclude Include="Objects\Player.h" />
+    <ClInclude Include="Map\World.h" />
+    <ClInclude Include="Objects\WarGoblin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

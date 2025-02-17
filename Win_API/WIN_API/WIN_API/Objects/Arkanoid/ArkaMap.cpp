@@ -4,7 +4,6 @@
 #include "ArkaBall.h"
 #include "ArkaBar.h"
 #include "ArkaBrick.h"
-#include "ArkaItem.h"
 
 ArkaMap::ArkaMap()
 {
@@ -38,13 +37,6 @@ ArkaMap::~ArkaMap()
 {
 }
 
-void ArkaMap::Init(shared_ptr<ArkaBar> bar)
-{
-	shared_ptr<ArkaItem> item = make_shared<ArkaItem>();
-	item->SetSkill(std::bind(&ArkaBar::TwoBall_Skill, bar));
-	_items.push_back(item);
-	_bricks[0][0]->SetItem(item);
-}
 
 void ArkaMap::Update()
 {
@@ -56,8 +48,7 @@ void ArkaMap::Update()
 		}
 	}
 
-	for (auto item : _items)
-		item->Update();
+	
 }
 
 void ArkaMap::Render(HDC hdc)
@@ -69,10 +60,8 @@ void ArkaMap::Render(HDC hdc)
 			brick->Render(hdc);
 		}
 	}
-	
-	for (auto item : _items)
-		item->Render(hdc);
 }
+	
 
 void ArkaMap::IsCollision_Bricks(shared_ptr<ArkaBall> ball)
 {
@@ -106,13 +95,4 @@ void ArkaMap::IsCollision_Bricks(shared_ptr<ArkaBall> ball)
 	}
 }
 
-void ArkaMap::GetItems(shared_ptr<ArkaBar> bar)
-{
-	for (auto item : _items)
-	{
-		if (item->GetCollider()->IsCollision(bar->GetCollider()))
-		{
-			item->ActiveSkill();
-		}
-	}
-}
+

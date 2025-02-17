@@ -1,7 +1,7 @@
 #pragma once
 
 class ArkaMap;
-class ArkaItem;
+
 
 class ArkaBrick
 {
@@ -17,7 +17,6 @@ public:
 	Vector GetPos() { return _pos; }
 
 	shared_ptr<RectCollider> GetCollider() { return _body; }
-	void SetItem(shared_ptr<ArkaItem> item);
 
 	void Break_Brick();
 
@@ -27,6 +26,5 @@ private:
 	shared_ptr<RectCollider> _body;
 	Vector _pos;
 
-	weak_ptr<ArkaItem> _item;
 };
 
