@@ -2,14 +2,13 @@
 #include "RectCollider.h"
 
 RectCollider::RectCollider(Vector center, Vector size)
-: Collider(center), _halfSize(size * 0.5f)
+	: Collider(center), _halfSize(size * 0.5f)
 {
-	
+	_type = ColType::RECT;
 }
 
 RectCollider::~RectCollider()
 {
-	
 }
 
 void RectCollider::Update()
@@ -18,57 +17,45 @@ void RectCollider::Update()
 
 void RectCollider::Render(HDC hdc)
 {
-	vector<HPEN> pens = GetPens();
-	UINT curPen = GetCurPen();
-	SelectObject(hdc, pens[curPen]);
+	SelectObject(hdc, _pens[_curPen]);
 
-	Vector center = GetCenter();
-
-	float left = center.x - _halfSize.x;
-	float right = center.x + _halfSize.x;
-	float top = center.y - _halfSize.y;
-	float bottom = center.y + _halfSize.y;
+	float left = _center.x - _halfSize.x;
+	float right = _center.x + _halfSize.x;
+	float top = _center.y - _halfSize.y;
+	float bottom = _center.y + _halfSize.y;
 
 	Rectangle(hdc, left, top, right, bottom);
 }
 
 
-
+// Rect 회전하지않는다는 조건
 bool RectCollider::IsCollision(const Vector& pos)
 {
-	Vector center = GetCenter();
+	// x값만 봤을 때 사이에 있다.
+	if (pos.x > Left() && pos.x < Right())
+	{
+		// y값만 봤을 때 사이에 있다.
+		if (pos.y > Top() && pos.y < Bottom())
+		{
+			return true;
+		}
+	}
 
-	float left = center.x - _halfSize.x;
-	float right = center.x + _halfSize.x;
-	float top = center.y - _halfSize.y;
-	float bottom = center.y + _halfSize.y;
-
-	if (pos.x >= left && pos.x <= right && pos.y >= top && pos.y <= bottom)
-		return true;
 	return false;
 }
 
 bool RectCollider::IsCollision(shared_ptr<RectCollider> other)
 {
-	Vector center = GetCenter();
+	if (other->Left() > Right())
+		return false;
+	if (other->Right() < Left())
+		return false;
+	if (other->Top() > Bottom())
+		return false;
+	if (other->Bottom() < Top())
+		return false;
 
-	float left = center.x - _halfSize.x;
-	float right = center.x + _halfSize.x;
-	float top = center.y - _halfSize.y;
-	float bottom = center.y + _halfSize.y;
-
-	float otherLeft = other->GetCenter().x - other->_halfSize.x;
-	float otherRight = other->GetCenter().x + other->_halfSize.x;
-	float otherTop = other->GetCenter().y - other->_halfSize.y;
-	float otherBottom = other->GetCenter().y + other->_halfSize.y;
-
-	if (otherLeft >= left && otherLeft <= right || otherRight >= left && otherRight <= right)
-	{
-		if (otherTop >= top && otherTop <= bottom || otherBottom >= top && otherBottom <= bottom)
-			return true;
-	}
-
-	return false;
+	return true;
 }
 
 bool RectCollider::IsCollision(shared_ptr<CircleCollider> other)
@@ -77,37 +64,23 @@ bool RectCollider::IsCollision(shared_ptr<CircleCollider> other)
 	Vector rightV = Vector(1, 0);
 	Vector upV = Vector(0, -1);
 
-	if (dir.Length() > _halfSize.Length() + other->GetRadius())
-		return false;
-	float lengthX = abs(rightV.Dot(dir));
-	if (lengthX > _halfSize.x + other->GetRadius())
+	// 예외처리
+	float length = dir.Length();
+	float rectHalfLength = _halfSize.Length();
+	float circleRadius = other->GetRadius();
+
+	if (length > rectHalfLength + circleRadius)
 		return false;
 
-	
+	// x축 내적
+	float lengthX = abs(rightV.Dot(dir));
+	if (lengthX > _halfSize.x + circleRadius)
+		return false;
+
+	// y축 내적
 	float lengthY = abs(upV.Dot(dir));
-	if (lengthY > _halfSize.y + other->GetRadius())
+	if (lengthY > _halfSize.y + circleRadius)
 		return false;
 
 	return true;
-
-
-	//Vector newHalfSize(_halfSize.x + other->GetRadius(), _halfSize.y + other->GetRadius());
-	//
-	//float newLeft = _center.x - newHalfSize.x;
-	//float newRight = _center.x + newHalfSize.x;
-	//float newTop = _center.y - newHalfSize.y;
-	//float newBottom = _center.y + newHalfSize.y;
-
-	//Vector circleCenter = other->GetCenter();
-	//Vector dir = circleCenter - _center;
-
-	//if (circleCenter.x >= newLeft && circleCenter.x <= newRight && circleCenter.y >= newTop && circleCenter.y <= newBottom)
-	//{
-	//	if (dir.Length() <= _halfSize.Length() + other->GetRadius())
-	//	{
-	//		return true;
-	//	}
-	//}
-
-	//return false;
 }

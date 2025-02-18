@@ -8,26 +8,19 @@ public:
 	void Update();
 	void Render(HDC hdc);
 
+	void Fire(Vector dir);
 	void SetPos(Vector pos) { _circle->SetCenter(pos); }
-	void AddForce(Vector v);
-
-	void SetActive(bool value) { _ballSpeed = 0.0f; isActive = value; }
-
-	bool IsActive() { return isActive; }
-
-	shared_ptr<Collider> GetCollider() { return _circle; }
+	void AddVector(Vector v);
+	shared_ptr<CircleCollider> GetCollider() { return _circle; }
 
 	bool isActive = false;
 	
 
 private:
 	shared_ptr<CircleCollider>  _circle;
-	Vector _dir = Vector(1, 0);
-	float _speed = 2.0f;
 
-
-
-	float _ballSpeed = 2.0f;
-	const float _V = 0.6;
+	float _ballHasGone = 0.0f;
+	float _ballSpeed = 3;
+	Vector _dir;
 };
 
