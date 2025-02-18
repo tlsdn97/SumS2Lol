@@ -145,6 +145,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Objects\Arkanoid\ArkaMap.h" />
+    <ClInclude Include="Objects\Arkanoid\Brick.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaBall.h" />
+    <ClInclude Include="Objects\Arkanoid\Bar.h" />
+    <ClInclude Include="Scene\ArkanoidScene.h" />
     <ClInclude Include="Objects\Cannon\Ball.h" />
     <ClInclude Include="Objects\Cannon\Barrel.h" />
     <ClInclude Include="Objects\Cannon\Cannon.h" />
@@ -167,6 +172,11 @@
     <ClInclude Include="WIN_API.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Objects\Arkanoid\ArkaMap.cpp" />
+    <ClCompile Include="Objects\Arkanoid\Brick.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaBall.cpp" />
+    <ClCompile Include="Objects\Arkanoid\Bar.cpp" />
+    <ClCompile Include="Scene\ArkanoidScene.cpp" />
     <ClCompile Include="Objects\Cannon\Ball.cpp" />
     <ClCompile Include="Objects\Cannon\Barrel.cpp" />
     <ClCompile Include="Objects\Cannon\Cannon.cpp" />

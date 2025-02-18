@@ -13,7 +13,12 @@ public:
 	virtual bool IsCollision(shared_ptr<RectCollider> other) override;
 	virtual bool IsCollision(shared_ptr<class CircleCollider> other) override;
 
+	Vector GetHalfSize() { return _halfSize; }
 
+	int Left() { return center.x - _halfSize.x; }
+	int Right() { return center.x + _halfSize.x; }
+	int Top() { return center.y - _halfSize.y; }
+	int Bottom() { return center.y + _halfSize.y; }
 
 private:
 

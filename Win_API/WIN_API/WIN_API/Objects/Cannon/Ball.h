@@ -18,6 +18,7 @@ public:
 	shared_ptr<Collider> GetCollider() { return _circle; }
 
 	bool isActive = false;
+	
 
 private:
 	shared_ptr<CircleCollider>  _circle;
