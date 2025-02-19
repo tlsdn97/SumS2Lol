@@ -34,7 +34,7 @@ void WarGoblin::RangeAttack()
 			return false;
 		});
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		if (i >= _playerTable.size())
 			break;
