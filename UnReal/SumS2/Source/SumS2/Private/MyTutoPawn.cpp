@@ -45,26 +45,27 @@ void AMyTutoPawn::Tick(float DeltaTime)
 
 	if (GetAttachParentActor() == nullptr)
 	{
-		FVector curLocation = GetActorLocation();
-		FVector destLocation = curLocation + FVector(0, 0, _moveSpeed) * DeltaTime;
-		SetActorLocation(destLocation);
+		FRotator selfRot = FRotator(0, _moveSpeed * DeltaTime, 0);
+		AddActorLocalRotation(selfRot);
 
-		FRotator rot = FRotator(0, 1, 0);
-		AddActorLocalRotation(rot * _rotSpeed * DeltaTime);
-		//SetActorRotation()
+		FVector curLocation = GetActorLocation();
+		FVector pivot = FVector(0, 0, 0);
+		FVector orviDir = (curLocation - pivot).GetSafeNormal();
+		FVector newLocation = curLocation + orviDir.RotateAngleAxis(_rotSpeed * DeltaTime, FVector(0, 0, 1));
+		SetActorLocation(newLocation);
 	}
 	else
 	{
-		FVector parent = GetAttachParentActor()->GetActorLocation();
-		FVector myV = GetActorLocation(); // worldLocation
+		FVector parentLocation = GetAttachParentActor()->GetActorLocation();
+		FVector offset = GetActorLocation() - parentLocation;
 
-		// 자전주기와 공전 주기 바꾸기
-		
+		offset = offset.RotateAngleAxis(_rotSpeed * DeltaTime, FVector(0, 0, 1));
+		SetActorLocation(parentLocation + offset);
+
+		FRotator selfRot = FRotator(0, 0, _rotSpeed * DeltaTime);
+		AddActorLocalRotation(selfRot);
+
 	}
-	
-
-	
-	
 
 }
 
