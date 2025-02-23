@@ -42,28 +42,6 @@ void AMyPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (GetAttachParentActor() == nullptr)
-	{
-		FVector curLocation = GetActorLocation();
-		FVector destLocation = curLocation + FVector(_moveSpeed, 0, 0) * DeltaTime;
-		SetActorLocation(destLocation);
-
-		FRotator rot = FRotator(0, 1, 0);
-		AddActorWorldRotation(rot * _rotSpeed * DeltaTime);
-
-	}
-	else
-	{
-		FVector parentV = GetAttachParentActor()->GetActorLocation();
-		FVector myV = GetActorLocation();
-
-		FRotator rot = UKismetMathLibrary::FindLookAtRotation(myV, parentV);
-		SetActorRotation(rot);
-	}
-
-
-
-	
 }
 
 // Called to bind functionality to input
@@ -99,13 +77,18 @@ void AMyPawn::Move(const FInputActionValue& value)
 
 	if (Controller != nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Y : %f"), moveVector.Y);
-		UE_LOG(LogTemp, Error, TEXT("X : %f"), moveVector.X);
+		if (moveVector.Length() > 0.01f)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Y : %f"), moveVector.Y);
+			UE_LOG(LogTemp, Error, TEXT("X : %f"), moveVector.X);
 
-		FVector forWard = GetActorForwardVector() * moveVector.Y * 10.0f;
-		FVector right = GetActorRightVector() * moveVector.X * 10.0f;
-		FVector newLocation = GetActorLocation() + forWard + right;
-		SetActorLocation(newLocation);
+			FVector forWard = GetActorForwardVector() * moveVector.Y * 10.0f;
+			FVector right = GetActorRightVector() * moveVector.X * 10.0f;
+			FVector newLocation = GetActorLocation() + forWard + right;
+			SetActorLocation(newLocation);
+		}
+		//AddMovementInput(GetActorForwardVector(), moveVector.Y * 100.0f);
+		//AddMovementInput(GetActorRightVector(), moveVector.X * 100.0f);
 	}
 }
 

@@ -2,6 +2,7 @@
 
 
 #include "MyActor.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AMyActor::AMyActor()
@@ -24,8 +25,30 @@ void AMyActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FRotator rot = FRotator(0, 1, 0);
-	AddActorWorldRotation(rot * _rotSpeed * DeltaTime);
+	// FRotator rot = FRotator(0, 1, 0);
+	// AddActorWorldRotation(rot * _rotSpeed * DeltaTime);
+
+	if (GetAttachParentActor() == nullptr)
+	{
+		FVector curLocation = GetActorLocation();
+		FVector destLocation = curLocation + FVector(_moveSpeed, 0, 0) * DeltaTime;
+		SetActorLocation(destLocation);
+
+		FRotator rot = FRotator(0, 1, 0);
+		AddActorWorldRotation(rot * _rotSpeed * DeltaTime);
+
+	}
+	else
+	{
+		FVector parentV = GetAttachParentActor()->GetActorLocation();
+		FVector myV = GetActorLocation();
+
+		FRotator rot = UKismetMathLibrary::FindLookAtRotation(myV, parentV);
+		SetActorRotation(rot);
+	}
+
+
+
 
 }
 
