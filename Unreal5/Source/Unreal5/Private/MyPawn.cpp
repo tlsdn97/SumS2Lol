@@ -3,6 +3,8 @@
 
 #include "MyPawn.h"
 
+#include "Kismet/KismetMathLibrary.h"
+
 // Sets default values
 AMyPawn::AMyPawn()
 {
@@ -22,13 +24,16 @@ AMyPawn::AMyPawn()
 	{
 		_mesh->SetStaticMesh(sm.Object);
 	}
-
+	
+	UE_LOG(LogTemp, Warning, TEXT("Constructor!!"));
 }
 
 // Called when the game starts or when spawned
 void AMyPawn::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UE_LOG(LogTemp, Log, TEXT("Begin!!"));
 	
 }
 
@@ -37,12 +42,31 @@ void AMyPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FVector curLocation = GetActorLocation();
-	FVector descLocation = curLocation + FVector(_moveSpeed,0, 0);
-	//SetActorLocation(descLocation);
+	UE_LOG(LogTemp, Error, TEXT("Deltatime : %f"), DeltaTime);
+
+
+	if (GetAttachParentActor() == nullptr)
+	{
+		FVector curLocation = GetActorLocation();
+		FVector destLocation = curLocation + FVector(0, _moveSpeed, 0);
+		SetActorLocation(destLocation);
+
+		// FRotator rot = FRotator(0, 1, 0);
+		// AddActorLocalRotation(rot * _rotSpeed * DeltaTime);
+	}
+	else
+	{
+		FVector parentV = GetAttachParentActor()->GetActorLocation();
+		FVector myV = GetActorLocation();
+
+		FRotator rot = UKismetMathLibrary::FindLookAtRotation(myV, parentV);
+
+		SetActorRotation(rot);
+	}
 
 	FRotator rot = FRotator(0, 1, 0);
-	AddActorLocalRotation(rot * _rotSpeed * DeltaTime);
+	AddActorLocalRotation(rot * _rotationSpeed * DeltaTime);
+	
 
 }
 

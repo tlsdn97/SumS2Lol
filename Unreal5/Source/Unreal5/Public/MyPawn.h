@@ -31,6 +31,6 @@ private:
 	UStaticMeshComponent* _mesh;
 
 	float _moveSpeed = 2.0f;
-	float _rotSpeed = 30.0f;
+	float _rotationSpeed = 100.0f;
 
 };
