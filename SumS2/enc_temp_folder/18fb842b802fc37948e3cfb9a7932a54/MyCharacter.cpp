@@ -97,9 +97,12 @@ void AMyCharacter::Look(const FInputActionValue& value)
 
 void AMyCharacter::Jump(const FInputActionValue& value)
 {
-	if (value.Get<bool>())
+	FVector2D jumpVector = value.Get<FVector2D>();
+
+	if (Controller != nullptr)
 	{
-		GetCharacterMovement()->JumpZVelocity = 430.0f;
 		ACharacter::Jump();
 	}
 }
+
+

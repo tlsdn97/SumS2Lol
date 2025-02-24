@@ -265,6 +265,9 @@
     <ClCompile Include="..\..\Source\SumS2\Private\MyActor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyAnimInstance.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SumS2\Private\MyCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -278,6 +281,7 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\SumS2\Public\MyActor.h"/>
+    <ClInclude Include="..\..\Source\SumS2\Public\MyAnimInstance.h"/>
     <ClInclude Include="..\..\Source\SumS2\Public\MyCharacter.h"/>
     <ClInclude Include="..\..\Source\SumS2\Public\MyGameModeBase.h"/>
     <ClInclude Include="..\..\Source\SumS2\Public\MyPawn.h"/>
