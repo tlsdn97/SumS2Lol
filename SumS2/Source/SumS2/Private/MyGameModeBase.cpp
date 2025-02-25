@@ -3,14 +3,15 @@
 
 #include "MyGameModeBase.h"
 #include "MyPawn.h"
+#include "MyCharacter.h"
 
 AMyGameModeBase::AMyGameModeBase()
 {
-	static ConstructorHelpers::FClassFinder<AMyPawn> pawn
+	static ConstructorHelpers::FClassFinder<AMyCharacter> pawn
 	(TEXT("/Script/Engine.Blueprint'/Game/BluePrint/BP_MyCharator.BP_MyCharator_C'"));
 
 	if (pawn.Succeeded())
 	{
-		DefaultPawnClass = AMyPawn::StaticClass();
+		DefaultPawnClass = pawn.Class;
 	}
 }

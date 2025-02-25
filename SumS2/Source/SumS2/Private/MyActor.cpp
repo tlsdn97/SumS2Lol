@@ -46,9 +46,5 @@ void AMyActor::Tick(float DeltaTime)
 		FRotator rot = UKismetMathLibrary::FindLookAtRotation(myV, parentV);
 		SetActorRotation(rot);
 	}
-
-
-
-
 }
 

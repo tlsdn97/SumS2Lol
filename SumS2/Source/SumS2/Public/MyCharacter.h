@@ -19,18 +19,28 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION()
 	void Move(const struct FInputActionValue& value);
 	void Look(const struct FInputActionValue& value);
 	void Jump(const struct FInputActionValue& value);
+	void Attack(const struct FInputActionValue& value);
 
-	
+	UFUNCTION()
+	void TestDelegate();
+
+	UFUNCTION()
+	int32 TestDelegate2(int32 a, int32 b);
+
+	UFUNCTION()
+	void AttackEnd(class UAnimMontage* Montage, bool bInterrupted);
+
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
@@ -42,20 +52,22 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	class UInputAction* _jumpAction;
 
-	// 언리얼 핵심구조
-	// 1. 상속
-	// 2. 컴포넌트 
-	// 
-	// 컴포넌트 패턴: 부품
-	// 1. Actor 컴포넌트
-	// 2. Scene 컴포넌트
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	class UInputAction* _attackAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* _camera;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* _springArm;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Start", meta = (AllowPrivateAccess = "true"))
 	float _speed = 10.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
+	bool _isAttack;
+
+	UPROPERTY()
+	class UMyAnimInstance* _animInstance;
+
 };

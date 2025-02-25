@@ -14,6 +14,8 @@
 
 #include "GameFramework/CharacterMovementComponent.h"
 
+#include "MyAnimInstance.h"
+
 
 
 // Sets default values
@@ -42,6 +44,18 @@ AMyCharacter::AMyCharacter()
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();	
+
+	_animInstance = Cast<UMyAnimInstance>(GetMesh()->GetAnimInstance());
+	if (_animInstance == nullptr)
+		UE_LOG(LogTemp, Error, TEXT("AnimInstance did not Set"));
+
+	// DELEGATE는 여러개 받을 수 있다.
+
+	// DELEGATE 바인딩 연습
+	_animInstance->_attackStart.BindUObject(this, &AMyCharacter::TestDelegate);
+	_animInstance->_attackStart2.BindUObject(this, &AMyCharacter::TestDelegate2);
+	_animInstance->_attackStart3.AddDynamic(this, &AMyCharacter::TestDelegate);
+	_animInstance->OnMontageEnded.AddDynamic(this, &AMyCharacter::AttackEnd);
 }
 
 // Called every frame
@@ -61,6 +75,7 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 		enhancedInputCompnent->BindAction(_moveAction, ETriggerEvent::Triggered, this, &AMyCharacter::Move);
 		enhancedInputCompnent->BindAction(_lookAction, ETriggerEvent::Triggered, this, &AMyCharacter::Look);
 		enhancedInputCompnent->BindAction(_jumpAction, ETriggerEvent::Triggered, this, &AMyCharacter::Jump);
+		enhancedInputCompnent->BindAction(_attackAction, ETriggerEvent::Triggered, this, &AMyCharacter::Attack);
 	}
 
 }
@@ -97,9 +112,41 @@ void AMyCharacter::Look(const FInputActionValue& value)
 
 void AMyCharacter::Jump(const FInputActionValue& value)
 {
-	if (value.Get<bool>())
+	bool isPress = value.Get<bool>();
+
+	if (isPress)
 	{
-		GetCharacterMovement()->JumpZVelocity = 430.0f;
 		ACharacter::Jump();
 	}
+}
+
+void AMyCharacter::Attack(const FInputActionValue& value)
+{
+	if(_isAttack)
+	return;
+
+	bool isPress = value.Get<bool>();
+
+	if (isPress)
+	{
+		_isAttack = true;
+		_animInstance->PlayAnimMontage();
+	}
+}
+
+void AMyCharacter::TestDelegate()
+{
+	UE_LOG(LogTemp, Log, TEXT("Attack Start Delegate Test"));
+}
+
+int AMyCharacter::TestDelegate2(int32 a, int32 b)
+{
+	UE_LOG(LogTemp, Log, TEXT("Attack Start Delegate Test, %d, %d"), a, b);
+
+	return -1;
+}
+
+void AMyCharacter::AttackEnd(UAnimMontage* Montage, bool bInterrupted)
+{
+	_isAttack = false;
 }
