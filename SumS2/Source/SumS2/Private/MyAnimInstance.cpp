@@ -49,6 +49,7 @@ void UMyAnimInstance::PlayAnimMontage()
 void UMyAnimInstance::AnimNotify_Attack_Hit()
 {
 	// 나를 갖고 있는 캐릭터의 AttackHit 
+	_hitEvent.Broadcast();
 }
 
 void UMyAnimInstance::JumpToSection(int32 sectionIndex)

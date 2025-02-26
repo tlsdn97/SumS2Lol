@@ -56,7 +56,7 @@ void AMyCharacter::BeginPlay()
 	_animInstance->_attackStart2.BindUObject(this, &AMyCharacter::TestDelegate2);
 	_animInstance->_attackStart3.AddDynamic(this, &AMyCharacter::TestDelegate);
 	_animInstance->OnMontageEnded.AddDynamic(this, &AMyCharacter::AttackEnd);
-	//_animInstance->_HitEvent.AddUObeject(this, &AMyCharacter::Attack_Hit);
+	_animInstance->_hitEvent.AddUObject(this, &AMyCharacter::Attack_Hit);
 
 }
 
@@ -167,14 +167,18 @@ void AMyCharacter::Attack_Hit()
 	float attackRange = 500.0f;
 	float attackRaius = 100.0f;
 
+	FQuat Rotation = FQuat(GetActorForwardVector().ToOrientationQuat()) * FQuat(FVector::RightVector, FMath::DegreesToRadians(90.0f));
+	//FQuat(GetActorForwardVector().ToOrientationQuat());// *FQuat(FVector::RightVector, FMath::DegreesToRadians(90.0f));
+
+
 	bool bResult = GetWorld()->SweepSingleByChannel
 	(
 		OUT hitResult,
 		GetActorLocation(),
-		GetActorLocation() + GetActorForwardVector() * attackRange,
+		GetActorLocation() + GetActorForwardVector() * (attackRange),
 		FQuat::Identity,
 		ECC_GameTraceChannel2,
-		FCollisionShape::MakeCapsule(attackRaius, attackRange * 0.5f),
+		FCollisionShape::MakeCapsule(attackRaius, attackRange),
 		params
 	);
 
@@ -184,9 +188,8 @@ void AMyCharacter::Attack_Hit()
 	{
 		drawColor = FColor::Red;
 	}
-
+	
 	// 충돌체 그리기
-	DrawDebugCapsule(GetWorld(), GetActorLocation(),
-	attackRange * 0.5f, attackRaius, FQuat::Identity, drawColor, false, 1.0f);
+	DrawDebugCapsule(GetWorld(), GetActorLocation(), attackRange * 0.5f, attackRaius, Rotation, drawColor, false, 1.0f);
 }
 
