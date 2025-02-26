@@ -32,6 +32,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAnimDelegateTest3);
 
 // Delegate란 함수를 넘겨서 간접적으로 나중에 어떤(서로 타입을 모르는 상태) 객체가 호출할수 있게 해주는 방법
 
+DECLARE_DELEGATE(AttackHitEvent);
+
 UCLASS()
 class SUMS2_API UMyAnimInstance : public UAnimInstance
 {
@@ -45,10 +47,15 @@ public:
 	UFUNCTION()
 	void PlayAnimMontage();
 
+	UFUNCTION()
+	void AnimNotify_Attack_Hit();
+
 	void JumpToSection(int32 sectionIndex);
 
 	AnimDelegateTest _attackStart;
 	AnimDelegateTest2 _attackStart2;
+
+	AttackHitEvent _HitEvent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Pawn", meta = (AllowPrivateAccess = "true"))
 	FAnimDelegateTest3 _attackStart3;
@@ -63,5 +70,11 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AnimMontate", meta = (AllowPrivateAccess = "true"))
 	class UAnimMontage* _animMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AnimMontate", meta = (AllowPrivateAccess = "true"))
+	float _vertical;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AnimMontate", meta = (AllowPrivateAccess = "true"))
+	float _horizontal;
 };
 
