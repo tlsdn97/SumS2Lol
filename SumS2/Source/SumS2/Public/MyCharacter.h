@@ -70,4 +70,7 @@ private:
 	UPROPERTY()
 	class UMyAnimInstance* _animInstance;
 
+
+	int32 _curAttackSection = 1;
+
 };

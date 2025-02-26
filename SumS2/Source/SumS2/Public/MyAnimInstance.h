@@ -30,6 +30,8 @@ DECLARE_DELEGATE_RetVal_TwoParams(int32, AnimDelegateTest2, int32, int32);
 // 멀티캐스트 다이나믹 Delegate
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAnimDelegateTest3);
 
+// Delegate란 함수를 넘겨서 간접적으로 나중에 어떤(서로 타입을 모르는 상태) 객체가 호출할수 있게 해주는 방법
+
 UCLASS()
 class SUMS2_API UMyAnimInstance : public UAnimInstance
 {
@@ -42,6 +44,8 @@ public:
 
 	UFUNCTION()
 	void PlayAnimMontage();
+
+	void JumpToSection(int32 sectionIndex);
 
 	AnimDelegateTest _attackStart;
 	AnimDelegateTest2 _attackStart2;

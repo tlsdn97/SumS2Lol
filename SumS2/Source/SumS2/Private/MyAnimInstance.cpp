@@ -34,11 +34,18 @@ void UMyAnimInstance::PlayAnimMontage()
 		if (!Montage_IsPlaying(_animMontage))
 		{
 			//Attack Delegate 실행
-			_attackStart.Execute();
-			_attackStart2.Execute(1,2);
-			_attackStart3.Broadcast(); // 멀티캐스트
+			//_attackStart.Execute();
+			//_attackStart2.Execute(1,2);
+			//_attackStart3.Broadcast(); // 멀티캐스트
 			
 			Montage_Play(_animMontage);
 		}
 
+}
+
+void UMyAnimInstance::JumpToSection(int32 sectionIndex)
+{
+	// Section1,Section2,Section3 설정
+	FName sectionName = FName(*FString(TEXT("Section%d"), sectionIndex));
+	Montage_JumpToSection(sectionName);
 }
