@@ -168,7 +168,6 @@ void AMyCharacter::Attack_Hit()
 	float attackRaius = 100.0f;
 
 	FQuat Rotation = FQuat(GetActorForwardVector().ToOrientationQuat()) * FQuat(FVector::RightVector, FMath::DegreesToRadians(90.0f));
-	//FQuat(GetActorForwardVector().ToOrientationQuat());// *FQuat(FVector::RightVector, FMath::DegreesToRadians(90.0f));
 
 
 	bool bResult = GetWorld()->SweepSingleByChannel
