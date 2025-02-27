@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "MyCharacter.h"
@@ -16,7 +16,9 @@
 
 #include "MyAnimInstance.h"
 
+#include "Engine/DamageEvents.h"
 
+#include "MyStatComponent.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -24,20 +26,22 @@ AMyCharacter::AMyCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	// bluePinter¿¡¼­ skeletaMesh
+	// bluePinterì—ì„œ skeletaMesh
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 
 	_springArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	_camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 
 
-	// »ó¼Ó°ü°è
+	// ìƒì†ê´€ê³„
 	_springArm->SetupAttachment(GetCapsuleComponent());
 	_camera->SetupAttachment(_springArm);
 
 
 	_springArm->TargetArmLength = 500.0f;
 	_springArm->SetRelativeRotation(FRotator(-35.0f, 0.0f, 0.0f));
+
+	_statComponent = CreateDefaultSubobject<UMyStatComponent>(TEXT("Stat"));
 }
 
 // Called when the game starts or when spawned
@@ -49,9 +53,9 @@ void AMyCharacter::BeginPlay()
 	if (_animInstance == nullptr)
 		UE_LOG(LogTemp, Error, TEXT("AnimInstance did not Set"));
 
-	// DELEGATE´Â ¿©·¯°³ ¹ÞÀ» ¼ö ÀÖ´Ù.
+	// DELEGATEëŠ” ì—¬ëŸ¬ê°œ ë°›ì„ ìˆ˜ ìžˆë‹¤.
 
-	// DELEGATE ¹ÙÀÎµù ¿¬½À
+	// DELEGATE ë°”ì¸ë”© ì—°ìŠµ
 	_animInstance->_attackStart.BindUObject(this, &AMyCharacter::TestDelegate);
 	_animInstance->_attackStart2.BindUObject(this, &AMyCharacter::TestDelegate2);
 	_animInstance->_attackStart3.AddDynamic(this, &AMyCharacter::TestDelegate);
@@ -98,8 +102,8 @@ void AMyCharacter::Move(const FInputActionValue& value)
 			_horizontal = moveVector.X;
 
 		
-			AddMovementInput(forWard, moveVector.Y * _speed);
-			AddMovementInput(right, moveVector.X * _speed);
+			AddMovementInput(forWard, moveVector.Y * _statComponent->GetSpeed());
+			AddMovementInput(right, moveVector.X * _statComponent->GetSpeed());
 		}
 	}
 }
@@ -110,7 +114,8 @@ void AMyCharacter::Look(const FInputActionValue& value)
 
 	if (Controller != nullptr)
 	{
-		AddControllerYawInput(lookAsixVector.X);
+		AddControllerYawInput(lookAsixVector.X); // YawëŠ” zì¶•
+		AddControllerPitchInput(-lookAsixVector.Y); // PitchëŠ” yì¶•
 	}
 }
 
@@ -167,17 +172,25 @@ void AMyCharacter::Attack_Hit()
 	float attackRange = 500.0f;
 	float attackRaius = 100.0f;
 
-	FQuat Rotation = FQuat(GetActorForwardVector().ToOrientationQuat()) * FQuat(FVector::RightVector, FMath::DegreesToRadians(90.0f));
+	//FQuat Rotation = FQuat(GetActorForwardVector().ToOrientationQuat()) * FQuat(FVector::RightVector, FMath::DegreesToRadians(90.0f));
 
+	FVector forward = GetActorForwardVector();
+	FQuat quat = FQuat::FindBetweenVectors(FVector(0, 0, 1), forward);
+
+	FVector center = GetActorLocation() + forward * attackRange * 0.5f;
+	FVector start = GetActorLocation() + forward * attackRange * 0.5f; // ì¶©ëŒì²´ì˜ ì¤‘ì‹¬ start
+	FVector end = GetActorLocation() + forward * attackRange * 0.5f; // ì¶©ëŒì²´ì˜ ì¤‘ì‹¬ end
+	// Sweep : startì—ì„œ endê¹Œì§€ ì“¸ê³ ê°€ëŠ” í˜•íƒœì˜ ì¶©ëŒ íŒì •
+	
 
 	bool bResult = GetWorld()->SweepSingleByChannel
 	(
 		OUT hitResult,
-		GetActorLocation(),
-		GetActorLocation() + GetActorForwardVector() * (attackRange),
-		FQuat::Identity,
+		start,
+		end,
+		quat,
 		ECC_GameTraceChannel2,
-		FCollisionShape::MakeCapsule(attackRaius, attackRange),
+		FCollisionShape::MakeCapsule(attackRaius, attackRange * 0.5f),
 		params
 	);
 
@@ -186,9 +199,36 @@ void AMyCharacter::Attack_Hit()
 	if (bResult && hitResult.GetActor()->IsValidLowLevel())
 	{
 		drawColor = FColor::Red;
+
+		AMyCharacter* victim = Cast<AMyCharacter>(hitResult.GetActor());
+		if (victim)
+		{
+			FDamageEvent damagdEvent = FDamageEvent();
+			victim->TakeDamage(_statComponent->GetAtk(), damagdEvent, GetController(), this);
+		}
 	}
 	
-	// Ãæµ¹Ã¼ ±×¸®±â
-	DrawDebugCapsule(GetWorld(), GetActorLocation(), attackRange * 0.5f, attackRaius, Rotation, drawColor, false, 1.0f);
+	// ì¶©ëŒì²´ ê·¸ë¦¬ê¸°
+	//DrawDebugCapsule(GetWorld(), GetActorLocation(),
+	//attackRange * 0.5f, attackRaius, FQuat::Identity, drawColor, false, 1.0f);
+
+	DrawDebugCapsule(GetWorld(), center,
+	attackRange * 0.5f, attackRaius, quat, drawColor, false, 1.0f);
+
+	//DrawDebugCapsule(GetWorld(), GetActorLocation(), attackRange * 0.5f, attackRaius, Rotation, drawColor, false, 1.0f);
+}
+
+void AMyCharacter::AddHp(float amount)
+{
+	_statComponent->AddCurHp(amount);
+}
+
+float AMyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+
+	_statComponent->AddCurHp(-DamageAmount);
+
+
+		return DamageAmount;
 }
 
