@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\SumS2Lol\\Unreal5\\Source\\Unreal5\\Unreal5.Build.cs",
+		"C:\\SumS2Lol\\Unreal5\\Source\\Unreal5.Target.cs",
+		"C:\\SumS2Lol\\Unreal5\\Source\\Unreal5Editor.Target.cs"
+	],
+	"EngineVersion": "5.4.4"
+}

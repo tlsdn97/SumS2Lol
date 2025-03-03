@@ -76,13 +76,13 @@ private:
 	class UMyAnimInstance* _animInstance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Start", meta = (AllowPrivateAccess = "true"))
-	class UMySataComponent* _sataComponent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Start", meta = (AllowPrivateAccess = "true"))
 	class UMyStatComponent* _statComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	bool _isAttack;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
+	class UWidgetComponent* _hpBarWidget;
 
 
 	
@@ -91,7 +91,6 @@ private:
 	float _vertical = 0.0f;
 	float _horizontal = 0.0f;
 
-	float _hp = 100;
-	float _atk = 10;
+	
 
 };
