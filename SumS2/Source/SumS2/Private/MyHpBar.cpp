@@ -10,6 +10,15 @@
 void UMyHpBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
+
+	auto controller = GetWorld()->GetFirstPlayerController();
+
+	if (controller)
+	{
+		auto camera = Cast<ACameraActor>(controller->GetViewTarget());
+
+	}
+
 }
 
 void UMyHpBar::SetHpBarValue(float ratio)

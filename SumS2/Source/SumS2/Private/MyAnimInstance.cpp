@@ -56,5 +56,5 @@ void UMyAnimInstance::JumpToSection(int32 sectionIndex)
 {
 	// Section1,Section2,Section3 ¼³Á¤
 	FName sectionName = FName(*FString::Printf(TEXT("Section%d"), sectionIndex));
-	Montage_JumpToSection(sectionName);
+	Montage_JumpToSection(sectionName, _animMontage);
 }

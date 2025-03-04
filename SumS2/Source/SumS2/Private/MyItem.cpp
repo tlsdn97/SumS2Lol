@@ -63,7 +63,12 @@ void AMyItem::ItemDrop(UPrimitiveComponent* OverlappedComponent, AActor* OtherAc
 
 	//if (OtherActor->ActorHasTag(TEXT("Player")))  // «√∑π¿ÃæÓ∞° ¥Íæ“¿ª ∂ß
 	//{
-	//	//OnPickup();  // æ∆¿Ã≈€ »πµÊ
+	//	OnePickup();  // æ∆¿Ã≈€ »πµÊ
 	//}
+} 
+
+void AMyItem::ItemDropEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	UE_LOG(LogTemp, Warning, TEXT("End"));
 }
 

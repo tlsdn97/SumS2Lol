@@ -26,7 +26,7 @@
 AMyCharacter::AMyCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	// bluePinter에서 skeletaMesh
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
@@ -45,14 +45,13 @@ AMyCharacter::AMyCharacter()
 
 	_statComponent = CreateDefaultSubobject<UMyStatComponent>(TEXT("Stat"));
 	_hpBarWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HpBar"));
-	_hpBarWidget->SetupAttachment(GetMesh());
-	_hpBarWidget->SetWidgetSpace(EWidgetSpace::World);
-
-	struct ConstructorHelpers::FClassFinder<UMyHpBar> hpBarClass(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/BluePrint/BP_MyHpbar.BP_MyHpbar_C'"));
+	
+	static ConstructorHelpers::FClassFinder<UMyHpBar>hpBarClass(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/BluePrint/BP_MyHpBar.BP_MyHpBar_C'"));
 	if (hpBarClass.Succeeded())
 	{
 		_hpBarWidget->SetWidgetClass(hpBarClass.Class);
 	}
+
 }
 
 // Called when the game starts or when spawned
@@ -61,8 +60,6 @@ void AMyCharacter::BeginPlay()
 	Super::BeginPlay();	
 
 	_animInstance = Cast<UMyAnimInstance>(GetMesh()->GetAnimInstance());
-	if (_animInstance == nullptr)
-		UE_LOG(LogTemp, Error, TEXT("AnimInstance did not Set"));
 
 	// DELEGATE는 여러개 받을 수 있다.
 
@@ -73,6 +70,8 @@ void AMyCharacter::BeginPlay()
 	_animInstance->OnMontageEnded.AddDynamic(this, &AMyCharacter::AttackEnd);
 	_animInstance->_hitEvent.AddUObject(this, &AMyCharacter::Attack_Hit);
 
+	
+	
 }
 
 // Called every frame
@@ -80,15 +79,6 @@ void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	auto playerCameraManager = GetWorld()->GetFirstPlayerController()->PlayerCameraManager;
-
-	if (playerCameraManager)
-	{
-		FVector hpBarLocation = _hpBarWidget->GetComponentLocation();
-		FVector cameraLocation = playerCameraManager->GetCameraLocation();
-		FRotator rot = UKismetMathLibrary::FindLookAtRotation(hpBarLocation, cameraLocation);
-		_hpBarWidget->SetWorldRotation(rot);
-	}
 }
 
 // Called to bind functionality to input
@@ -109,6 +99,8 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 void AMyCharacter::Move(const FInputActionValue& value)
 {
+	if (_isAttack) return;
+
 	FVector2D moveVector = value.Get<FVector2D>();
 
 	if (Controller != nullptr)
@@ -142,6 +134,8 @@ void AMyCharacter::Look(const FInputActionValue& value)
 
 void AMyCharacter::Jump(const FInputActionValue& value)
 {
+	if (_isAttack) return;
+
 	bool isPress = value.Get<bool>();
 
 	if (isPress)
@@ -161,7 +155,7 @@ void AMyCharacter::Attack(const FInputActionValue& value)
 	{
 		_isAttack = true;
 
-		_curAttackSection = (_curAttackSection + 1) % 3 + 1;
+		_curAttackSection = (_curAttackSection) % 3 + 1;
 		_animInstance->PlayAnimMontage();
 
 		_animInstance->JumpToSection(_curAttackSection);
@@ -191,7 +185,7 @@ void AMyCharacter::Attack_Hit()
 	FCollisionQueryParams params(NAME_None, false, this);
 
 	float attackRange = 500.0f;
-	float attackRaius = 100.0f;
+	float attackRadius = 100.0f;
 
 	//FQuat Rotation = FQuat(GetActorForwardVector().ToOrientationQuat()) * FQuat(FVector::RightVector, FMath::DegreesToRadians(90.0f));
 
@@ -211,7 +205,7 @@ void AMyCharacter::Attack_Hit()
 		end,
 		quat,
 		ECC_GameTraceChannel2,
-		FCollisionShape::MakeCapsule(attackRaius, attackRange * 0.5f),
+		FCollisionShape::MakeCapsule(attackRadius, attackRange * 0.5f),
 		params
 	);
 
@@ -234,7 +228,7 @@ void AMyCharacter::Attack_Hit()
 	//attackRange * 0.5f, attackRaius, FQuat::Identity, drawColor, false, 1.0f);
 
 	DrawDebugCapsule(GetWorld(), center,
-	attackRange * 0.5f, attackRaius, quat, drawColor, false, 1.0f);
+	attackRange * 0.5f, attackRadius, quat, drawColor, false, 1.0f);
 
 	//DrawDebugCapsule(GetWorld(), GetActorLocation(), attackRange * 0.5f, attackRaius, Rotation, drawColor, false, 1.0f);
 }
@@ -244,6 +238,17 @@ void AMyCharacter::AddHp(float amount)
 	_statComponent->AddCurHp(amount);
 }
 
+void AMyCharacter::TakeDamage2(float Damage)
+{
+	_statComponent->AddCurHp(Damage);
+
+	if (_health <= 0.0f)
+	{
+		Destroy();
+	}
+}
+
+
 float AMyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 
@@ -252,4 +257,3 @@ float AMyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEve
 
 		return DamageAmount;
 }
-

@@ -46,10 +46,12 @@ public:
 	float My_Vertical() { return _vertical; }
 	float My_Horizontal() { return _horizontal; }
 
-	
 	void Attack_Hit();
 
 	void AddHp(float amount);
+
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	void TakeDamage2(float Damage);
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
@@ -84,13 +86,11 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
 	class UWidgetComponent* _hpBarWidget;
 
-
-	
 	int32 _curAttackSection = 1;
 
 	float _vertical = 0.0f;
 	float _horizontal = 0.0f;
 
-	
+	float _health = 100.0f;
 
 };

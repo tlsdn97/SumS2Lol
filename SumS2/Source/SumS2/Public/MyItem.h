@@ -29,6 +29,9 @@ public:
 	UFUNCTION()
 	void ItemDrop(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const struct FHitResult& SweepResult);
 
+	UFUNCTION()
+	void ItemDropEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
 private:
 	UPROPERTY(EditAnywhere, Category = "Mesh")
 	class UStaticMeshComponent* _mesh;

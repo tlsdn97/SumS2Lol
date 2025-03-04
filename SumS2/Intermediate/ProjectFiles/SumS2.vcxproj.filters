@@ -42,6 +42,36 @@
     <Filter Include="Source\SumS2\Private">
       <UniqueIdentifier>{98FCDEEE-CF4C-3C59-B7E6-43E832E434D2}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyActor.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyAnimInstance.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyCharacter.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyGameInstance.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyGameModeBase.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyHpBar.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyItem.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyPawn.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyPlayerController.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SumS2\Private\MyStatComponent.cpp">
+      <Filter>Source\SumS2\Private</Filter>
+    </ClCompile>
     <Filter Include="Source\SumS2\Public">
       <UniqueIdentifier>{24742543-F099-3086-9149-FC3A5B2CF259}</UniqueIdentifier>
     </Filter>
@@ -75,37 +105,5 @@
     <ClInclude Include="..\..\Source\SumS2\Public\MyStatComponent.h">
       <Filter>Source\SumS2\Public</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyGameModeBase.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyAnimInstance.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyActor.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyCharacter.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyGameInstance.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyHpBar.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyItem.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyPawn.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyPlayerController.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SumS2\Private\MyStatComponent.cpp">
-      <Filter>Source\SumS2\Public</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
