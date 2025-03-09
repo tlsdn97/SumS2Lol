@@ -151,6 +151,13 @@
     <ClInclude Include="Objects\Alkanoid\Brick.h" />
     <ClInclude Include="Objects\Alkanoid\AlkaBall.h" />
     <ClInclude Include="Objects\Alkanoid\Bar.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaBall.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaBar.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaBrick.h" />
+    <ClInclude Include="Objects\Arkanoid\ArkaMap.h" />
+    <ClInclude Include="Objects\Arkanoid\Bar.h" />
+    <ClInclude Include="Objects\Arkanoid\Brick.h" />
+    <ClInclude Include="Objects\Arkanoid\Hp.h" />
     <ClInclude Include="Scene\AlkanoidScene.h" />
     <ClInclude Include="Math\DisJointSet.h" />
     <ClInclude Include="Objects\Maze\Maze.h" />
@@ -185,6 +192,13 @@
     <ClCompile Include="Objects\Alkanoid\Brick.cpp" />
     <ClCompile Include="Objects\Alkanoid\AlkaBall.cpp" />
     <ClCompile Include="Objects\Alkanoid\Bar.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaBall.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaBar.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaBrick.cpp" />
+    <ClCompile Include="Objects\Arkanoid\ArkaMap.cpp" />
+    <ClCompile Include="Objects\Arkanoid\Bar.cpp" />
+    <ClCompile Include="Objects\Arkanoid\Brick.cpp" />
+    <ClCompile Include="Objects\Arkanoid\Hp.cpp" />
     <ClCompile Include="Scene\AlkanoidScene.cpp" />
     <ClCompile Include="Objects\Maze\Maze.cpp" />
     <ClCompile Include="Objects\Maze\Block.cpp" />

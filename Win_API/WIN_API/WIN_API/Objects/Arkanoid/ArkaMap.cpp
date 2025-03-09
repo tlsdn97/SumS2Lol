@@ -1,23 +1,20 @@
 #include "framework.h"
 #include "ArkaMap.h"
 
-<<<<<<< HEAD
+
 #include "Brick.h"
 #include "ArkaBall.h"
-=======
-#include "ArkaBall.h"
+
 #include "ArkaBar.h"
 #include "ArkaBrick.h"
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
+
 
 ArkaMap::ArkaMap()
 {
 	_bricks.resize(_countY);
 
-<<<<<<< HEAD
-=======
 	Vector offset;
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
+
 	int x = ((_brickSize.x + _brickGap.x) * _countX) / 2.0f;
 
 	Vector temp = CENTER;
@@ -28,7 +25,7 @@ ArkaMap::ArkaMap()
 	{
 		for (int x = 0; x < _countX; x++)
 		{
-<<<<<<< HEAD
+
 			shared_ptr<Brick> bricks = make_shared<Brick>(_brickSize);
 
 			Vector brickPos;
@@ -38,7 +35,7 @@ ArkaMap::ArkaMap()
 			bricks->SetPos(brickPos);
 			bricks->_isActive = true;
 			_bricks[y].push_back(bricks);
-=======
+
 			shared_ptr<ArkaBrick> brick = make_shared<ArkaBrick>(_brickSize);
 
 			Vector brickPos;
@@ -48,7 +45,7 @@ ArkaMap::ArkaMap()
 			brick->SetPos(brickPos + offset);
 			brick->_isActive = true;
 			_bricks[y].push_back(brick);
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
+
 		}
 	}
 }
@@ -57,7 +54,7 @@ ArkaMap::~ArkaMap()
 {
 }
 
-<<<<<<< HEAD
+
 void ArkaMap::IsCollision_Bricks(shared_ptr<ArkaBall> ball)
 {
 	for (auto bricks : _bricks)
@@ -78,9 +75,6 @@ void ArkaMap::IsCollision_Bricks(shared_ptr<ArkaBall> ball)
 			
 	}
 }
-=======
-
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
 
 void ArkaMap::Update()
 {
@@ -88,36 +82,26 @@ void ArkaMap::Update()
 	{
 		for (auto brick : bricks)
 		{
-<<<<<<< HEAD
+
 			brick->GetPos();
 		}
 	}
-=======
 			brick->Update();
-		}
-	}
-
-	
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
+		
 }
-
+	
 void ArkaMap::Render(HDC hdc)
 {
 	for (auto bricks : _bricks)
 	{
 		for (auto brick : bricks)
 		{
-<<<<<<< HEAD
+
 			brick->GetPos();
 		}
 	}
+		brick->Render(hdc);
 }
-=======
-			brick->Render(hdc);
-		}
-	}
-}
-	
 
 void ArkaMap::IsCollision_Bricks(shared_ptr<ArkaBall> ball)
 {
@@ -152,4 +136,4 @@ void ArkaMap::IsCollision_Bricks(shared_ptr<ArkaBall> ball)
 }
 
 
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
+
