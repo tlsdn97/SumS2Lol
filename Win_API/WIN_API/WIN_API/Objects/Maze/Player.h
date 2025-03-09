@@ -52,7 +52,7 @@ class Player
 	struct Vertex
 	{
 		Vertex() {}
-		Vertex(Vector pos, int g, int h) : pos(pos), g(g), h(h), f(g + h) {}
+		Vertex(Vector pos, int g, int h) : pos(pos), g(g),h(h), f(g+h) {}
 
 		bool operator<(const Vertex& v) const
 		{
@@ -78,7 +78,7 @@ public:
 
 	void RightHand();
 	void BFS(Vector start); // 최소 간선의 개수
-	void Djikstra(Vector start);
+	void Djikstra(Vector start); 
 	void AStart(Vector start, Vector end);
 
 	bool Cango(Vector pos);
@@ -92,7 +92,7 @@ private:
 	float				_delayTime = 0.0f;
 
 	// RightHand
-	Vector _dir = Vector(0, -1);
+	Vector _dir = Vector(0,-1);
 
 	// BFS
 	vector<vector<bool>> _discovered;

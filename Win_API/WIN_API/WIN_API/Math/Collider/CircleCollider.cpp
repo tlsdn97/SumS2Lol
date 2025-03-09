@@ -2,7 +2,7 @@
 #include "CircleCollider.h"
 
 CircleCollider::CircleCollider(Vector center, float radius)
-	: Collider(center), _radius(radius)
+: Collider(center),_radius(radius)
 {
 	_type = ColType::CIRCLE;
 }

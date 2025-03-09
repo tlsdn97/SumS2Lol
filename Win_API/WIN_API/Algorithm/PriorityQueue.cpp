@@ -32,7 +32,7 @@ public:
 
 			int parent = (now - 1) / 2;
 
-			if (pred(v[now], v[parent]))
+			if (pred(v[now],v[parent]))
 				break;
 
 			std::swap(v[parent], v[now]);
@@ -59,7 +59,7 @@ public:
 			}
 
 			int next = now;
-			if (pred(v[next], v[left]))
+			if (pred(v[next],v[left]))
 			{
 				next = left;
 			}

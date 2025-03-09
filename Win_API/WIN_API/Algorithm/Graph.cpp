@@ -67,7 +67,7 @@ void CreateGraph()
 
 	adjacent[4][1] = true;
 	adjacent[4][4] = true;
-
+	
 	adjacent[5][2] = true;
 	adjacent[5][5] = true;
 

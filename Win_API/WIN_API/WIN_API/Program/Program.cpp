@@ -6,26 +6,22 @@
 #include "Scene/LineScene.h"
 #include "Scene/LineCollisionScene.h"
 #include "Scene/CannonScene.h"
-#include "Scene/ArkanoidScene.h"
-<<<<<<< HEAD
-=======
 #include "Scene/MazeScene.h"
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
-
+#include "Scene/AlkanoidScene.h"
+#include <time.h>
 
 HDC Program::backbuffer = nullptr;
 Program::Program()
 {
-	_scene = make_shared<ArkanoidScene>();
-<<<<<<< HEAD
-=======
+	srand(time(nullptr));
+
+	_scene = make_shared<AlkanoidScene>();
 
 	HDC hdc = GetDC(hWnd);
 
 	backbuffer = CreateCompatibleDC(hdc);
 	_hBitMap = CreateCompatibleBitmap(hdc, WIN_WIDTH, WIN_HEIGHT); // 그림을 그릴 도화지
 	SelectObject(backbuffer, _hBitMap);
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
 }
 
 Program::~Program()

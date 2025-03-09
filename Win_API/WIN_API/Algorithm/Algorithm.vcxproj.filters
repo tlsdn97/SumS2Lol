@@ -15,19 +15,49 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Babbling.cpp">
+    <ClCompile Include="Stack.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="BFS.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BST.cpp">
+    <ClCompile Include="DFS.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PriorityQueue.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Djikstra.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DisjointSet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MST.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Babbling.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickSort.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeSort.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="BinarySearchTree.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DFS.cpp">
+    <ClCompile Include="BST.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DP(0).cpp">
@@ -42,43 +72,10 @@
     <ClCompile Include="DP(3).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DP(4).cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DisjointSet.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Djikstra.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeSort.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Graph.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PriorityQueue.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MST.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Queue.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="QuickSort.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree.cpp">
+    <ClCompile Include="DP%284%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DP(5).cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DP(6).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

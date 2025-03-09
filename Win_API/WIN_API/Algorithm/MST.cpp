@@ -141,7 +141,7 @@ vector<Edge> Kruskal()
 	vector<Edge> result;
 
 	// 최소 간선부터 찾기 => 정렬
-	std::sort(edges.begin(), edges.end(), [](const Edge& a, const Edge& b)-> bool
+	std::sort(edges.begin(), edges.end(), [](const Edge& a, const Edge& b)-> bool 
 		{
 			if (a.cost < b.cost)
 				return true;

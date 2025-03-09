@@ -34,7 +34,7 @@ public:
 
 		return result;
 	}
-	Vector& operator=(const Vector& other)
+	Vector& operator=(const Vector& other) 
 	{
 		this->x = other.x;
 		this->y = other.y;
@@ -110,9 +110,9 @@ public:
 
 		return cross1 * cross2 < 0;
 	}
-	float ManhattanDistance(Vector pos)
-	{
-		Vector temp = pos - *this;
+	float ManhattanDistance(Vector pos) 
+	{ 
+		Vector temp = pos - *this;  
 
 		return abs(temp.x) + abs(temp.y);
 	}

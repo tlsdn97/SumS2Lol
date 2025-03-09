@@ -5,7 +5,7 @@
 #include "Block.h"
 
 Player::Player(shared_ptr<Maze> maze)
-	: _maze(maze)
+: _maze(maze)
 {
 	_maze.lock()->SetBlockType(_pos, Block::Type::PLAYER);
 
@@ -297,7 +297,7 @@ void Player::AStart(Vector start, Vector end)
 
 			float thereH = there.ManhattanDistance(end) * 10;
 			float thereF = thereG + thereH;
-
+			
 			// 더 좋은 there의 best가 있으면 continue;
 			if (thereF > _best[there.y][there.x])
 				continue;

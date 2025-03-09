@@ -25,7 +25,7 @@ public:
 
 private:
 	shared_ptr<CircleCollider>	_body;
-
+	
 	float _delay = 0.0f;
 	const float _attackSpeed = 3.0f;
 

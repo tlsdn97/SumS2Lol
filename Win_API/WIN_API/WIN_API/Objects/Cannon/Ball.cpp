@@ -57,6 +57,7 @@ void Ball::Update()
 
 	_circle->SetCenter(_circle->GetCenter() + _dir * _ballSpeed);
 
+	// 화면 밖 나갈 때 정반사
 	Vector center = _circle->GetCenter();
 	if (center.x < 0 || center.x > WIN_WIDTH)
 		_dir.x *= -1;

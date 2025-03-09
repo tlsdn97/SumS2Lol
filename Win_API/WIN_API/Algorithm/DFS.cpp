@@ -73,7 +73,7 @@ void DFS(int here)
 int main()
 {
 	CreateGraph();
-
+	
 	int count = 0;
 	for (int i = 0; i < adjacent.size(); i++)
 	{

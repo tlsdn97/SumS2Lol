@@ -155,7 +155,7 @@ void Maze::CreateMaze_Kruskal()
 
 				Edge edge;
 				edge.u = Vector((int)x, (int)y);
-				edge.v = Vector((int)(x + 2), (int)y);
+				edge.v = Vector((int)(x+2), (int)y);
 				edge.cost = randCost;
 
 				edges.push_back(edge);
@@ -166,8 +166,8 @@ void Maze::CreateMaze_Kruskal()
 				int randCost = rand() % 100;
 
 				Edge edge;
-				edge.u = Vector((int)x, (int)y);
-				edge.v = Vector((int)x, (int)y + 2);
+				edge.u = Vector((int)x,(int)y);
+				edge.v = Vector((int)x, (int)y + 2 );
 				edge.cost = randCost;
 
 				edges.push_back(edge);
@@ -175,8 +175,8 @@ void Maze::CreateMaze_Kruskal()
 		}
 	}
 
-	std::sort(edges.begin(), edges.end(),
-		[](const Edge& a, const Edge& b)-> bool
+	std::sort(edges.begin(), edges.end(), 
+		[](const Edge& a, const Edge& b)-> bool 
 		{
 			if (a.cost < b.cost)
 				return true;
@@ -185,7 +185,7 @@ void Maze::CreateMaze_Kruskal()
 
 	DisJointSet set(MAX_X * MAX_Y);
 
-	for (auto edge : edges)
+	for(auto edge : edges)
 	{
 		int u = MAX_X * edge.u.y + edge.u.x;
 		int v = MAX_X * edge.v.y + edge.v.x;

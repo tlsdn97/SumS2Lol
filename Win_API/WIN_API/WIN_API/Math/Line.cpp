@@ -2,7 +2,7 @@
 #include "Line.h"
 
 Line::Line(Vector start, Vector end)
-	: start(start), end(end)
+: start(start), end(end)
 {
 	_pens.push_back(CreatePen(1, 3, GREEN));
 	_pens.push_back(CreatePen(1, 3, RED));

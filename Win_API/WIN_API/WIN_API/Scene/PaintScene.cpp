@@ -3,7 +3,7 @@
 
 PaintScene::PaintScene()
 {
-	_rect = make_shared<RectCollider>(Vector(100, 100), Vector(70, 30));
+	_rect = make_shared<RectCollider>(Vector(100,100), Vector(70,30));
 	_circle = make_shared<CircleCollider>(Vector(500, 500), 10);
 
 	_pens.push_back(CreatePen(1, 3, RGB(164, 119, 100)));

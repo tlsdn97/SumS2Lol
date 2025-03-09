@@ -11,7 +11,7 @@ Cannon::Cannon()
 	_body = make_shared<CircleCollider>(CENTER, 50);
 
 	_barrel = make_shared<Barrel>(_body);
-
+	
 	_poolCount = 30;
 	for (int i = 0; i < _poolCount; i++)
 	{
@@ -45,7 +45,7 @@ void Cannon::Render(HDC hdc)
 
 	_barrel->Render(hdc);
 	_body->Render(hdc);
-
+	
 	for (auto ball : _balls)
 	{
 		ball->Render(hdc);
@@ -99,7 +99,7 @@ void Cannon::Fire(function<void(void)> fn)
 
 		(*iter)->Fire(_barrel->GetDir());
 
-		if (fn != nullptr)
+		if(fn != nullptr)
 			fn();
 	}
 }

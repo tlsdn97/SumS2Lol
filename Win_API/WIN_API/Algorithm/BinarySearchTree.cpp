@@ -65,8 +65,8 @@ int main()
 
 	map<string, int> m;
 
-	if (m.count("Hanil1") == 0)
-		m["Hanil1"] = 1;
+	if(m.count("Hanil1") == 0)
+		m["Hanil1"] = 1;	
 	auto iter = m.insert(make_pair<string, int>("Hanil2", 2));
 
 	for (auto p : m)

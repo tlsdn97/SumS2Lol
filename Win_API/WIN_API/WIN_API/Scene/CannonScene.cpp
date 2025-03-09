@@ -28,15 +28,15 @@ void CannonScene::Update()
 	case CannonScene::ONE:
 	{
 		_cannon->Move();
-		_cannon->Fire(bind(&CannonScene::NextTurn, this));
+ 		_cannon->Fire(bind(&CannonScene::NextTurn, this));
 	}
-	break;
+		break;
 	case CannonScene::TWO:
 	{
 		_cannon2->Move();
 		_cannon2->Fire(bind(&CannonScene::NextTurn, this));
 	}
-	break;
+		break;
 	default:
 		break;
 	}

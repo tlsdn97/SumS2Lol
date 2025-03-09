@@ -75,37 +75,7 @@
     <ClInclude Include="Objects\Cannon\Ball.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Scene\ArkanoidScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Arkanoid\Bar.h">
-=======
-    <ClInclude Include="Math\DisJointSet.h">
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Arkanoid\ArkaBall.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Objects\Arkanoid\Brick.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Arkanoid\ArkaMap.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-=======
-    <ClInclude Include="Objects\Arkanoid\ArkaMap.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Arkanoid\ArkaBrick.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Arkanoid\ArkaBar.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\ArkanoidScene.h">
+    <ClInclude Include="Scene\MazeScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Maze\Block.h">
@@ -117,13 +87,30 @@
     <ClInclude Include="Objects\Maze\Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\MazeScene.h">
+    <ClInclude Include="Math\DisJointSet.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Arkanoid\Hp.h">
+    <ClInclude Include="Scene\AlkanoidScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
+    <ClInclude Include="Objects\Alkanoid\Bar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Alkanoid\AlkaBall.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Alkanoid\Brick.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Alkanoid\AlkaMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Alkanoid\AlkaItem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Alkanoid\HpBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WIN_API.cpp">
@@ -177,36 +164,7 @@
     <ClCompile Include="Objects\Cannon\Ball.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Scene\ArkanoidScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\Bar.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\ArkaBall.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\Brick.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\ArkaMap.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-=======
-    <ClCompile Include="Objects\Arkanoid\ArkaBall.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\ArkaMap.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\ArkaBrick.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\ArkaBar.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\ArkanoidScene.cpp">
+    <ClCompile Include="Scene\MazeScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Maze\Block.cpp">
@@ -218,13 +176,27 @@
     <ClCompile Include="Objects\Maze\Player.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\MazeScene.cpp">
+    <ClCompile Include="Scene\AlkanoidScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Arkanoid\Hp.cpp">
+    <ClCompile Include="Objects\Alkanoid\Bar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
->>>>>>> db6d49e58888e580d27ef5ee2d6378544e5952c3
+    <ClCompile Include="Objects\Alkanoid\AlkaBall.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Alkanoid\Brick.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Alkanoid\AlkaMap.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Alkanoid\AlkaItem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Alkanoid\HpBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WIN_API.rc">

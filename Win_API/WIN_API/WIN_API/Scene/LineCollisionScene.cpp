@@ -5,7 +5,7 @@ LineCollisionScene::LineCollisionScene()
 {
 	_line1 = make_shared<Line>(Vector(100, 100), Vector(100, 100));
 	_line2 = make_shared<Line>(Vector(100, 500), Vector(700, 200));
-	_hitPoint = make_shared<CircleCollider>(Vector(100, 100), 6);
+	_hitPoint = make_shared<CircleCollider>(Vector(100,100), 6);
 	_hitPoint->SetRed();
 }
 

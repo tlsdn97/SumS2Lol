@@ -2,7 +2,7 @@
 #include "RectCollider.h"
 
 RectCollider::RectCollider(Vector center, Vector size)
-	: Collider(center), _halfSize(size * 0.5f)
+: Collider(center), _halfSize(size * 0.5f)
 {
 	_type = ColType::RECT;
 }
@@ -62,7 +62,7 @@ bool RectCollider::IsCollision(shared_ptr<CircleCollider> other)
 {
 	Vector dir = other->GetCenter() - GetCenter();
 	Vector rightV = Vector(1, 0);
-	Vector upV = Vector(0, -1);
+	Vector upV = Vector(0, - 1);
 
 	// 예외처리
 	float length = dir.Length();

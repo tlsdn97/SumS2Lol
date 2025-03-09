@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <stack>
 #include <queue>
 
 // stack, queue
-// statck : ¼±ÀÔÈÄÃâ -> First Input Last Out : FILO => ÆÒÄÉÀÌÅ© => Last Input First Out
-// queue : ¼±ÀÔ¼±Ãâ -> First Input First Oout : FIFO => ÁÙ ¼­´Â °Í
+// statck : ì„ ìž…í›„ì¶œ -> First Input Last Out : FILO => íŒ¬ì¼€ì´í¬ => Last Input First Out
+// queue : ì„ ìž…ì„ ì¶œ -> First Input First Oout : FIFO => ì¤„ ì„œëŠ” ê²ƒ
 using namespace std;
 
 template<typename T, typename Container = vector<T>>

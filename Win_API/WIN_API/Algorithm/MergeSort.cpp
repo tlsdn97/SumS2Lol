@@ -100,7 +100,7 @@ int main()
 	// 빠른 정렬
 
 	std::partial_sort(v.begin(), v.begin() + 3, v.end()); // N x logM => 앞에 3개만 최대값으로 정렬
-
+	
 	std::stable_sort(v.begin(), v.end()); // N x logN
 	// 안전한 정렬(같은 값일 경우 앞에있던 수가 무조건 앞에 있다.)
 	// ... 임시배열 만든다.

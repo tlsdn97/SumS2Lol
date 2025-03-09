@@ -5,7 +5,7 @@
 #include "CircleCollider.h"
 
 Collider::Collider(Vector center)
-	: _center(center)
+: _center(center)
 {
 	_pens.push_back(CreatePen(1, 3, BLACK));
 	_pens.push_back(CreatePen(1, 3, GREEN));
@@ -33,12 +33,12 @@ bool Collider::IsCollision(shared_ptr<Collider> other)
 	{
 		return IsCollision(static_pointer_cast<CircleCollider>(other));
 	}
-	break;
+		break;
 	case Collider::ColType::RECT:
 	{
 		return IsCollision(static_pointer_cast<RectCollider>(other));
 	}
-	break;
+		break;
 	default:
 		break;
 	}

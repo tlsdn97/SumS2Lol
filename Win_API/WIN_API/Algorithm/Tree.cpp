@@ -30,7 +30,7 @@ Node* CreateTree()
 	// C 스타일
 	Node* root = new Node();
 	root->data = "개발팀";
-
+	
 	// 프로그래밍 팀
 	Node* programming = new Node();
 	programming->data = "프로그래밍팀";
@@ -100,7 +100,7 @@ void PrintTree(Node* node, int depth = 0)
 	}
 
 	// 전위순회
-	cout << node->data << endl;
+	 cout << node->data << endl;
 
 	for (auto child : node->children)
 	{
