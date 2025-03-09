@@ -45,7 +45,46 @@
     <ClCompile Include="..\..\Source\Unreal5\Private\MyActor.cpp">
       <Filter>Source\Unreal5\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyAnimInstance.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyButton.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyCharacter.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyEnemy.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyGameInstance.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyGameModeBase.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyHpBar.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyInvenComponent.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyInvenUI.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyItem.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5\Private\MyPawn.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyPlayer.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyPlayerController.cpp">
+      <Filter>Source\Unreal5\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5\Private\MyStatComponent.cpp">
       <Filter>Source\Unreal5\Private</Filter>
     </ClCompile>
     <Filter Include="Source\Unreal5\Public">
@@ -54,7 +93,46 @@
     <ClInclude Include="..\..\Source\Unreal5\Public\MyActor.h">
       <Filter>Source\Unreal5\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyAnimInstance.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyButton.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyCharacter.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyEnemy.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyGameInstance.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyGameModeBase.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyHpBar.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyInvenComponent.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyInvenUI.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyItem.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5\Public\MyPawn.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyPlayer.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyPlayerController.h">
+      <Filter>Source\Unreal5\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5\Public\MyStatComponent.h">
       <Filter>Source\Unreal5\Public</Filter>
     </ClInclude>
   </ItemGroup>
