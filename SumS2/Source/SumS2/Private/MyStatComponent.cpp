@@ -22,7 +22,7 @@ void UMyStatComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	auto gameInstance =  Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
+	auto gameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	_level = 1;
 	auto statInfo = gameInstance->GetStat_Level(_level);
 	_maxHp = statInfo.hp;
@@ -48,21 +48,15 @@ int32 UMyStatComponent::AddCurHp(float amount)
 	_curHp += amount;
 
 	if (_curHp < 0)
-
 		_curHp = 0;
-
 	if (_curHp > _maxHp)
-
 		_curHp = _maxHp;
 
-	auto actor = GetOwner();
-	
 	float ratio = _curHp / (float)_maxHp;
 
-	if(_hpChanged.IsBound())
-	_hpChanged.Broadcast(ratio);
 
-	//UE_LOG(LogTemp, Warning, TEXT("Name : %s, HP : %d"), *actor->GetName(), _curHp);
+	if (_hpChanged.IsBound())
+		_hpChanged.Broadcast(ratio);
 
 	return before - _curHp;
 }
