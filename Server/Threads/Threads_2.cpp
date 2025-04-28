@@ -7,11 +7,15 @@
 
 using namespace std;
 
-// 0. 과제
-// 세마포어 : 
-// CPU 파이프라인 :
+// 세마포어 : mutex와 다르게 자물쇠 개념이 아니고, 참조할 때 카운트를 하니씩 올리거나 감소시키는 것. - srd_prt이랑 연관이 있다.
 
-// 1. 원자성 (atomic)
+// CPU 파이프라인 :
+// - Fetch : 읽기
+// - Decode : 해석
+// - Excute : 생성
+// - Memory Accsee : 메모리 접근
+
+// 1. 원자성 (atomic) - 무결성 검사
 // - all or nothing
 
 atomic<int> sum = 0;

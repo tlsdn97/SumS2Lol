@@ -34,7 +34,7 @@ private:
 
 void Push(int num)
 {
-	std::lock_guard<std::mutex> lg(m);
+	LockGuard<std::mutex> lg(&m);
 
 	v.push_back(num);
 }
