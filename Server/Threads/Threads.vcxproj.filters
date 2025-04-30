@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Exercise.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="Threads_1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -30,7 +33,13 @@
     <ClCompile Include="Threads_5.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Exercise.cpp">
+    <ClCompile Include="Threads_8.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Threads_7.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Threads_6.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
