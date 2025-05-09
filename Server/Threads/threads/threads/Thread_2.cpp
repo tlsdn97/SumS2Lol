@@ -7,18 +7,18 @@
 
 using namespace std;
 
-// ¼¼¸¶Æ÷¾î : mutex¿Í ´Ù¸£°Ô ÀÚ¹°¼è °³³äÀÌ ¾Æ´Ï°í, ÂüÁ¶ÇÒ ¶§ Ä«¿îÆ®¸¦ ÇÏ´Ï¾¿ ¿Ã¸®°Å³ª °¨¼Ò½ÃÅ°´Â °Í. - srd_prtÀÌ¶û ¿¬°üÀÌ ÀÖ´Ù.
+// CPU íŒŒì´í”„ë¼ì¸ :
+// - Fetch : ì½ê¸°
+// - Decode : í•´ì„
+// - Excute : ì‹¤í–‰
+// - Memory Access : ë©”ëª¨ë¦¬ ì ‘ê·¼
+// 
+// ì„¸ë§ˆí¬ì–´ : mutexì™€ ë‹¤ë¥´ê²Œ ìë¬¼ì‡  ê°œë…ì´ ì•„ë‹ˆê³ , ì°¸ì¡°í•  ë•Œ ì¹´ìš´íŠ¸ë¥¼ í•˜ë‚˜ì”© ì˜¬ë¦¬ê±°ë‚˜ ê°ì†Œì‹œí‚¤ëŠ” ê²ƒ.
 
-// CPU ÆÄÀÌÇÁ¶óÀÎ :
-// - Fetch : ÀĞ±â
-// - Decode : ÇØ¼®
-// - Excute : »ı¼º
-// - Memory Accsee : ¸Ş¸ğ¸® Á¢±Ù
-
-// 1. ¿øÀÚ¼º (atomic) - ¹«°á¼º °Ë»ç
+// 1. ì›ìì„± (atomic)
 // - all or nothing
 
-atomic<int> sum = 0;
+atomic<int> sum = 0; 
 
 void AddSum()
 {
@@ -41,7 +41,6 @@ int main()
 	vector<std::thread> threads;
 	threads.resize(6);
 
-	// R ¹ë·ù ·¹ÆÛ·±½º
 	for (int i = 0; i < 3; i++)
 	{
 		threads[i] = std::thread(&AddSum);
@@ -52,11 +51,10 @@ int main()
 		threads[i] = std::thread(&SubSum);
 	}
 
-	for (auto& t : threads)
+	for(auto& t : threads)
 		t.join();
 
 	cout << sum << endl;
-
 
 	return 0;
 }

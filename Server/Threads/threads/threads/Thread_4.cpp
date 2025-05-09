@@ -8,8 +8,8 @@
 
 using namespace std;
 
-//  - DeadLock : ±³Âø»óÅÂ
-//    mutex°¡ 2°³ ÀÖ´Â »óÈ²
+//  - DeadLock : êµì°©ìƒíƒœ
+//    mutexê°€ 2ê°œ ìˆëŠ” ìƒí™©
 
 // - SpinLock
 //    : CAS
@@ -45,7 +45,7 @@ public:
 	{
 		lock_guard<std::mutex> lg(_mutex);
 
-		// ¾ÆÀÌµğ ÃßÃâ
+		// ì•„ì´ë”” ì¶”ì¶œ
 
 		return nullptr;
 	}
@@ -80,7 +80,7 @@ public:
 	{
 		lock_guard<std::mutex> lg(_mutex);
 
-		// °èÁÂ Á¤º¸¸¦ °®°í¿Â´Ù...
+		// ê³„ì¢Œ ì •ë³´ë¥¼ ê°–ê³ ì˜¨ë‹¤...
 
 		return nullptr;
 	}
@@ -98,21 +98,21 @@ int main()
 	AccountManager::Create();
 	UserManager::Create();
 
-	std::thread t1([]()->void
-		{
+	std::thread t1([]()->void 
+	{
 			for (int i = 0; i < 10000; i++)
 			{
 				AccountManager::GetInstance()->Login();
 			}
-		});
+	});
 
 	std::thread t2([]()->void
-		{
+	{
 			for (int i = 0; i < 10000; i++)
 			{
 				UserManager::GetInstance()->Save();
 			}
-		});
+	});
 
 	t1.join();
 	t2.join();
@@ -124,11 +124,11 @@ void UserManager::Save()
 {
 	lock_guard<std::mutex> lg(_mutex);
 
-	// °èÁÂ¸¦ È®ÀÎÇÏ°í ÀúÀå
+	// ê³„ì¢Œë¥¼ í™•ì¸í•˜ê³  ì €ì¥
 	Account* account = AccountManager::GetInstance()->GetAccount(10);
 
-	// °èÁ¤ ÀúÀå
-	// DB¿¡ Update
+	// ê³„ì • ì €ì¥
+	// DBì— Update
 
 	return;
 }
@@ -139,8 +139,8 @@ void AccountManager::Login()
 
 	User* user = UserManager::GetInstance()->GetUser(10);
 
-	// User Á¤º¸¸¦ È®ÀÎÇÏ°í ¸ÂÀ» ½Ã¿¡ Åë°ú
-	// DB¿¡¼­ È®ÀÎ
+	// User ì •ë³´ë¥¼ í™•ì¸í•˜ê³  ë§ì„ ì‹œì— í†µê³¼
+	// DBì—ì„œ í™•ì¸
 
 	return;
 }

@@ -9,9 +9,11 @@ using namespace std;
 // Event Lock
 // Producer - Consumer Pattern
 
+// CV : Condition Variable
+
 queue<int> q;
 std::mutex m;
-HANDLE handle;
+condition_variable cv;
 
 void Produce()
 {
@@ -22,7 +24,7 @@ void Produce()
 			q.push(100);
 		}
 
-		::SetEvent(handle);
+		cv.notify_all();
 		this_thread::sleep_for(1000ms);
 	}
 }
@@ -31,30 +33,30 @@ void Consume()
 {
 	while (true)
 	{
-		::WaitForSingleObject(handle, INFINITE);
-
 		unique_lock<std::mutex> lg(m);
 
-		if (q.empty() == false)
+		// 조건을 확인하라고 통지하는 얘가 필요하다.
+		// cv에서 조건을 확인하고 만족하지 않으면 mutex 해제
+		// 만족하면 그 때에서 mutex 획득
+		cv.wait(lg, []()-> bool 
 		{
-			auto data = q.front();
-			q.pop();
-			cout << data << endl;
-		}
+			return q.empty() == false;
+		});
+
+		auto data = q.front();
+		q.pop();
+		cout << "Q Data : " << data << endl;
+		cout << "Q Size : " << q.size() << endl;
 	}
 }
 
 int main()
 {
-	handle = CreateEvent(NULL, FALSE, FALSE, NULL);
-
 	std::thread t1(Produce);
 	std::thread t2(Consume);
 
 	t1.join();
 	t2.join();
-
-	::CloseHandle(handle);
 
 	return 0;
 }

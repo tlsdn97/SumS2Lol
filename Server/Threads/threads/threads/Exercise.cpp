@@ -1,6 +1,6 @@
-// ¼Ò¼ö ±¸ÇÏ±â (1 ~ 100,000)¿¡¼­ ¼Ò¼ö°¡ ¸î°³ ÀÖ´ÂÁö
-// 1. ´ÜÀÏ ¾²·¹µå¿¡¼­
-// 2. ¸ÖÆ¼ ¾²·¹µå
+// ì†Œìˆ˜ êµ¬í•˜ê¸° (1 ~ 100,000)ì—ì„œ ì†Œìˆ˜ê°€ ëª‡ê°œ ìˆëŠ”ì§€
+// 1. ë‹¨ì¼ ì“°ë ˆë“œì—ì„œ
+// 2. ë©€í‹° ì“°ë ˆë“œ
 #include <iostream>
 #include <thread>
 #include <vector>
@@ -8,48 +8,61 @@
 
 using namespace std;
 
-void PrimeCount_One()
-{
-
-}
-
-void PrimeCount_Two()
-{
-
-}
+int MAX_C = 1000000;
 
 bool IsPrime(int num)
 {
-	if (num == 0 || num == 1)
+	if(num == 0 || num == 1)
 		return false;
 
-	if (num == 2 || num == 3)
+	if(num == 2 || num == 3)
 		return true;
 
 	int count = sqrt(num);
 
 	for (int i = 2; i <= count; i++)
 	{
-		if (num % i == 0)
+		if(num % i == 0)
 			return false;
 	}
 
 	return true;
 }
 
+
 int main()
 {
 	__int64 start = GetTickCount64();
+
+	int OneCount = 0;
+	for (int i = 0; i < MAX_C; i++)
+	{
+		if (IsPrime(i))
+		{
+			OneCount++;
+		}
+	}
+
+	__int64 end = GetTickCount64();
+	cout << OneCount << endl;
+	cout << end - start << "ms" << endl;
+
+	start = GetTickCount64();
+	// ì‘ì—…
 	atomic<int> primeCount = 0;
 
 	vector<std::thread> threads;
 	int threadCount = thread::hardware_concurrency();
-	int jobCount = (100000 / threadCount);
+	int jobCount = (MAX_C / threadCount); // 100000
 
 	for (int i = 0; i < threadCount; i++)
 	{
+		// thread 9ê°œ
+		// thread1 : 1 ~ 10000
+		// thread2 : 10000 ~ 20000
+		// ...
 		int start = (i * jobCount);
-		int end = min(100000, (i + 1) * jobCount);
+		int end = min(MAX_C,(i + 1) * jobCount);
 
 		threads.push_back(thread(([start, end, &primeCount]()->void
 			{
@@ -61,12 +74,12 @@ int main()
 			})));
 	}
 
-	for (auto& t : threads)
+	for(auto& t : threads)
 		t.join();
 
-	__int64 end = GetTickCount64();
+	end = GetTickCount64();
 
-	__int64 temp = end - start;
+	__int64 temp = end -start;
 	cout << primeCount << endl;
 	cout << end - start << "ms" << endl;
 
