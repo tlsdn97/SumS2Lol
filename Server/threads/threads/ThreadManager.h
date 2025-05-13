@@ -34,6 +34,8 @@ public:
 	void Launch(function<void(void)> callback); // Callable 객체(함수 포인터, 함수 객체)
 	void Join();
 
+	SharedPtr<DeadLockProfile> DeadLockProfiler() { return _deadLcokProfile; }
+
 	static void InitTLS();
 	static void DestroyTLS();
 
@@ -43,5 +45,7 @@ private:
 
 	TArray<thread> _threads;
 	Mutex _lock;
+
+	SharedPtr<DeadLockProfile> _deadLcokProfile;
 };
 

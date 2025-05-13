@@ -2,8 +2,16 @@
 #include "RWLock.h"
 
 
-void RWLock::WriteLcok()
+void RWLock::WriteLcok(const char* name)
 {
+
+#if  _DEBUG
+	// DEBUG모드 에서만 실행되는 코드
+	TM->DeadLockProfiler()->PushLock(name);
+
+#endif
+
+
 	uint32 lockThreadID = (_lockFlag & WRITE_THREAD_MASK) >> 16;
 
 	if (LThreadID == lockThreadID)
@@ -42,8 +50,14 @@ void RWLock::WriteLcok()
 // [wwwwww] [wwwwww] [rrrrrr] [rrrrrrrr]
 // [wwwwww] [wwwwww]
 
-void RWLock::ReadLock()
+void RWLock::ReadLock(const char* name)
 {
+#if  _DEBUG
+	// DEBUG모드 에서만 실행되는 코드
+	TM->DeadLockProfiler()->PushLock(name);
+
+#endif
+
 	// ThreadID 추출
 	uint32 lockThreadID = (_lockFlag & WRITE_THREAD_MASK) >> 16;
 
@@ -80,8 +94,14 @@ void RWLock::ReadLock()
 	}
 }
 
-void RWLock::WriteUnLcok()
+void RWLock::WriteUnLcok(const char* name)
 {
+#if  _DEBUG
+	// DEBUG모드 에서만 실행되는 코드
+	TM->DeadLockProfiler()->PopLock(name);
+
+#endif
+
 	if ((_lockFlag.load() & READ_COUNT_MASK) != 0)
 	{
 		int32* temp = (int32*)0xDEADBEFF;
@@ -95,8 +115,14 @@ void RWLock::WriteUnLcok()
 	}
 }
 
-void RWLock::ReadUnLock()
+void RWLock::ReadUnLock(const char* name)
 {
+#if  _DEBUG
+	// DEBUG모드 에서만 실행되는 코드
+	TM->DeadLockProfiler()->PopLock(name);
+
+#endif
+
 	if ((_lockFlag.fetch_add(1) & READ_COUNT_MASK) == 0)
 	{
 		// TODO

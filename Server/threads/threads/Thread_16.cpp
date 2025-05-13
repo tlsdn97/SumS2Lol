@@ -67,6 +67,10 @@ int main()
 
 	TM->Join();
 
+	p1->ReleaseRef();
+	p2->ReleaseRef();
+
+
 	ThreadManager::Delete();
 
 	return 0;

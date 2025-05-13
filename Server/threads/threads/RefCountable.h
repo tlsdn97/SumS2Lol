@@ -27,7 +27,7 @@ private:
 	atomic<int32> _refCount;
 };
 
-template<typename T>
+template <typename T>
 class TSharedPtr
 {
 public:
@@ -63,9 +63,9 @@ public:
 
 		return *this;
 	}
-
+	 
 	bool operator==(const TSharedPtr& other) const { return _ptr == other._ptr; }
-	bool operator!=(const TSharedPtr& other) const { return _ptr != other._ptr; }
+	bool operator!=(const TSharedPtr& other) const { return _ptr!=other._ptr; }
 	bool operator==(T* ptr) const { return _ptr == ptr; }
 	bool operator!=(T* ptr) const { return _ptr != ptr; }
 	T* operator*() { return _ptr; }
@@ -74,6 +74,7 @@ public:
 	const T* operator->() const { return _ptr; }
 
 	bool IsNull() { return _ptr == nullptr; }
+
 
 private:
 	void Set(T* ptr)
@@ -94,8 +95,7 @@ private:
 		}
 	}
 
-
 private:
-	// RefCountable을 상속 받는 클래스 T
+	// RefCountable을 상속받는 클래스 T
 	T* _ptr = nullptr;
 };

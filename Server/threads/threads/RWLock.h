@@ -37,10 +37,10 @@ class RWLock
 
 public:
 
-	void WriteLcok();
-	void ReadLock();
-	void WriteUnLcok();
-	void ReadUnLock();
+	void WriteLcok(const char* name);
+	void ReadLock(const char* name);
+	void WriteUnLcok(const char* name);
+	void ReadUnLock(const char* name);
 	
 
 private:
@@ -53,31 +53,33 @@ private:
 class ReadLockGuard
 {
 public:
-	ReadLockGuard(RWLock& lock) : _lock(lock)
+	ReadLockGuard(RWLock& lock, const char* name) : _lock(lock), _name(name)
 	{
-		_lock.ReadLock();
+		_lock.ReadLock(_name);
 	}
 	~ReadLockGuard()
 	{
-		_lock.ReadUnLock();
+		_lock.ReadUnLock(_name);
 	}
 
 private:
+	const char* _name;
 	RWLock& _lock;
 };
 
 class WriteLockGuard
 {
 public:
-	WriteLockGuard(RWLock& lock) : _lock(lock)
+	WriteLockGuard(RWLock& lock, const char* name) : _lock(lock), _name(name)
 	{
-		_lock.WriteLcok();
+		_lock.WriteLcok(_name);
 	}
 	~WriteLockGuard()
 	{
-		_lock.WriteUnLcok();
+		_lock.WriteUnLcok(_name);
 	}
 
 private:
+	const char* _name;
 	RWLock& _lock;
 };
