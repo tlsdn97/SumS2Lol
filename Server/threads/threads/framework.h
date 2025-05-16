@@ -16,6 +16,9 @@
 
 using namespace std;
 
+#include "AllocCator.h"
+#include "Memory.h"
+
 #include "Types.h"
 
 // Multi Thread Data Structure
