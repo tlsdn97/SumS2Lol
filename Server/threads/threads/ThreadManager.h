@@ -35,6 +35,7 @@ public:
 	void Join();
 
 	SharedPtr<DeadLockProfile> DeadLockProfiler() { return _deadLcokProfile; }
+	SharedPtr<Memory> PoolMemory() { return _poolMemory; }
 
 	static void InitTLS();
 	static void DestroyTLS();
@@ -47,5 +48,7 @@ private:
 	Mutex _lock;
 
 	SharedPtr<DeadLockProfile> _deadLcokProfile;
+
+	SharedPtr<Memory> _poolMemory;
 };
 

@@ -98,6 +98,18 @@
     <ClCompile Include="Thread_19.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="MemoryPool.cpp">
+      <Filter>Remain</Filter>
+    </ClCompile>
+    <ClCompile Include="MyContainer.cpp">
+      <Filter>Remain</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_20.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket_1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreTLS.h">
@@ -131,6 +143,12 @@
       <Filter>Remain</Filter>
     </ClInclude>
     <ClInclude Include="Memory.h">
+      <Filter>Remain</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryPool.h">
+      <Filter>Remain</Filter>
+    </ClInclude>
+    <ClInclude Include="MyContainer.h">
       <Filter>Remain</Filter>
     </ClInclude>
   </ItemGroup>

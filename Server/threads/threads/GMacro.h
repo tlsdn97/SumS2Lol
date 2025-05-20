@@ -28,7 +28,7 @@
 	*crash = 0xDEADBEEF;					\
 }											\
 
-#define ASSERT(expr)						\
+#define ASSERT_CRASH(expr)					\
 {											\
 	if(!(expr))								\
 	{										\

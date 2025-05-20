@@ -1,5 +1,10 @@
 #pragma once
 #include <iostream>
+
+#include <winSock2.h>
+#include <MSWSock.h>
+#include <WS2tcpip.h>
+
 #include <thread>
 #include <mutex>
 #include <future>
@@ -16,8 +21,11 @@
 
 using namespace std;
 
+#pragma comment(lib,"ws2_32.lib")
+
 #include "AllocCator.h"
 #include "Memory.h"
+#include "MemoryPool.h"
 
 #include "Types.h"
 
