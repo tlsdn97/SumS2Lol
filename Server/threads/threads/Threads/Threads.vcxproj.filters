@@ -17,6 +17,9 @@
     <ClCompile Include="Thread_1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Thread_2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="Thread_3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -24,6 +27,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Thread_5.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Exercise.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Thread_6.cpp">
@@ -77,22 +83,7 @@
     <ClCompile Include="Socket_1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Socket_3.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Exercise.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Thread_2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Socket_2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Socket_4.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Socket_5.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,16 +91,5 @@
     <ClInclude Include="framework.h">
       <Filter>Remain</Filter>
     </ClInclude>
-    <ClInclude Include="Threads\framework.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="x64\Debug\threads.tlog\threads.lastbuildstate" />
-    <None Include="x64\Debug\threads.tlog\CL.command.1.tlog" />
-    <None Include="x64\Debug\threads.tlog\unsuccessfulbuild" />
-    <None Include="x64\Debug\vc143.idb" />
-    <None Include="x64\Debug\vc143.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="x64\Debug\threads.log" />
   </ItemGroup>
 </Project>

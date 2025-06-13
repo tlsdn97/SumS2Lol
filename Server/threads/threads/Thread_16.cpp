@@ -3,10 +3,13 @@
 class Player : public RefCountable
 {
 public:
-	Player() { cout << "Player »ý¼ºÀÚ È£Ãâ " << endl; }
-	~Player() { cout << "Player ¼Ò¸êÀÚ È£Ãâ " << endl; }
+	Player() { cout << "Player ìƒì„±ìž í˜¸ì¶œ!" << endl;}
+	~Player() 
+	{
+		cout << "Player ì†Œë©¸ìž í˜¸ì¶œ!" << endl; 
+	}
 
-	void SetTarget(Player* target)
+	void SetTarget(TSharedPtr<Player> target)
 	{
 		_target = target;
 	}
@@ -24,9 +27,8 @@ public:
 		return _hp <= 0;
 	}
 
-
 private:
-	Player* _target = nullptr;
+	TSharedPtr<Player> _target = nullptr;
 
 	int _hp = 10;
 	int _atk = 1;
@@ -48,28 +50,25 @@ int main()
 {
 	ThreadManager::Create();
 
+	TSharedPtr<Player> p1 = new Player();//1
+	TSharedPtr<Player> p2 = new Player();//1
 
-	TSharedPtr<Player> p1 = new Player();
-	TSharedPtr<Player> p2 = new Player();
+	p1->SetTarget(p2); // 2
+	p2->SetTarget(p1); // 2
 
-	p1->ReleaseRef();
-	p2->ReleaseRef();
-
-	TM->Launch([p1,p2]()-> void
+	TM->Launch([p1,p2]()->void
 	{
 		while (true)
 		{
 			this_thread::sleep_for(1000ms);
 			break;
 		}
-
 	});
 
-	TM->Join();
+	TM->Join(); // 3, 3
 
 	p1->ReleaseRef();
 	p2->ReleaseRef();
-
 
 	ThreadManager::Delete();
 

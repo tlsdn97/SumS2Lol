@@ -1,14 +1,13 @@
 #include "framework.h"
 
+
 class Player
 {
 public:
-
-	Player() { cout << "PlayerÀÇ »ý¼ºÀÚ È£Ãâ" << endl; }
-	~Player() { cout << "PlayerÀÇ ¼Ò¸êÀÚ È£Ãâ" << endl; }
+	Player() { cout << "Playerì˜ ìƒì„±ìž í˜¸ì¶œ" << endl; }
+	~Player() { cout << "Playerì˜ ì†Œë©¸ìž í˜¸ì¶œ" << endl; }
 
 public:
-
 	int _hp = 0;
 	int _atk = 0;
 };
@@ -16,12 +15,10 @@ public:
 class Knight : public Player
 {
 public:
-
-	Knight() { cout << "KnightÀÇ »ý¼ºÀÚ È£Ãâ" << endl; }
-	~Knight() { cout << "KnightÀÇ ¼Ò¸êÀÚ È£Ãâ" << endl; }
+	Knight() { cout << "Knightì˜ ìƒì„±ìž í˜¸ì¶œ" << endl; }
+	~Knight() { cout << "Knightì˜ ì†Œë©¸ìž í˜¸ì¶œ" << endl; }
 
 public:
-
 	int _stamina = 0;
 };
 
@@ -29,9 +26,21 @@ int main()
 {
 	ThreadManager::Create();
 
-	Knight* k = xnew<Knight>();
+	TM->Launch([]() 
+	{
+		Vector<Knight> k;
+		k.resize(10);
+	});
 
+	Knight* k = xnew<Knight>();
+	Player* p = xnew<Player>();
+
+	reinterpret_cast<Knight*>(p)->_stamina = 10;
+
+	xdelete(p);
 	xdelete(k);
+
+	TM->Join();
 
 	ThreadManager::Delete();
 

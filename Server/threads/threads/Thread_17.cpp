@@ -1,7 +1,5 @@
 #include "framework.h"
 
-using namespace std;
-
 class AccountManager;
 
 class User {};
@@ -30,12 +28,13 @@ public:
 	{
 		READ_LOCK;
 
-		// ¾ÆÀÌµğ ÃßÃâ
+		// ì•„ì´ë”” ì¶”ì¶œ
 
 		return nullptr;
 	}
 
 	void Save();
+
 public:
 	USE_LOCK;
 	static UserManager* _instance;
@@ -64,7 +63,7 @@ public:
 	{
 		READ_LOCK;
 
-		// °èÁÂ Á¤º¸¸¦ °®°í¿Â´Ù...
+		// ê³„ì¢Œ ì •ë³´ë¥¼ ê°–ê³ ì˜¨ë‹¤...
 
 		return nullptr;
 	}
@@ -80,11 +79,11 @@ AccountManager* AccountManager::_instance = nullptr;
 void UserManager::Save()
 {
 	WRITE_LOCK;
-	// °èÁÂ¸¦ È®ÀÎÇÏ°í ÀúÀå
+	// ê³„ì¢Œë¥¼ í™•ì¸í•˜ê³  ì €ì¥
 	Account* account = AccountManager::GetInstance()->GetAccount(10);
 
-	// °èÁ¤ ÀúÀå
-	// DB¿¡ Update
+	// ê³„ì • ì €ì¥
+	// DBì— Update
 
 	return;
 }
@@ -95,17 +94,16 @@ void AccountManager::Login()
 
 	User* user = UserManager::GetInstance()->GetUser(10);
 
-	// User Á¤º¸¸¦ È®ÀÎÇÏ°í ¸ÂÀ» ½Ã¿¡ Åë°ú
-	// DB¿¡¼­ È®ÀÎ
+	// User ì •ë³´ë¥¼ í™•ì¸í•˜ê³  ë§ì„ ì‹œì— í†µê³¼
+	// DBì—ì„œ í™•ì¸
 
 	return;
 }
 
 void Login()
 {
-	for (int i = 0; i < 10000; i++)
+	for(int i=0; i < 10000; i++)
 		AccountManager::GetInstance()->Login();
-
 }
 
 void Save()

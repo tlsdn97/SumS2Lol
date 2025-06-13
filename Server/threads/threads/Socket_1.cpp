@@ -4,61 +4,60 @@
 
 using namespace std;
 
-// Socket : ³×Æ®¿öÅ© ÇÁ·Î±×·¡¹Ö¿¡¼­, ¼­·Î ¿¬°áµÉ ´ÜÀÚ.
-// - ip ÁÖ¼Ò : ¾ÆÆÄÆ® ÁÖ¼Ò
-// - Æ÷Æ®³Ñ¹ö : ¾ÆÆÄÆ® µ¿È£¼ö
-// - ÇÁ·ÎÅäÄİ(Protocol) :  Åë½Å ±Ô¾à
+// Socket : ë„¤íŠ¸ì›Œí¬ í”„ë¡œê·¸ë˜ë°ì—ì„œ, ì„œë¡œ ì—°ê²°ë  ë‹¨ì
+// - ip ì£¼ì†Œ : ì•„íŒŒíŠ¸ ì£¼ì†Œ
+// - í¬íŠ¸ë„˜ë²„ : ì•„íŒŒíŠ¸ ë™í˜¸ìˆ˜
+// - í”„ë¡œí† ì½œ(Protocol) : í†µì‹  ê·œì•½
 
+// IP ì£¼ì†Œ : IPV4, IPV6
+// UDP , TCP/IP
 
-// 0. °úÁ¦
-// IPÁÖ¼Ò : IPV4, IPV6 µÑÀÇ Â÷ÀÌÁ¡ Á¶»ç
-// UDP, TCP/IP Á¶»ç
-
-// ÇöÀç ³ª´Â Å¬¶óÀÌ¾ğÆ®.
+// í˜„ì¬ ë‚˜ëŠ” í´ë¼ì´ì–¸íŠ¸.
 int main()
 {
-	// À©µµ¿ì ¼ÒÄÏ(À©¼Ó) ÃÊ±âÈ­
-	// °ü·Ã Á¤º¸ wsaData¿¡ Ã¤¿ö³Ö´Â´Ù.
-	
-	WSADATA wsaData;
-	if (::WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
+
+	// ìœˆë„ìš° ì†Œì¼“,(ìœˆì†) ì´ˆê¸°í™”
+	// ê´€ë ¨ ì •ë³´ wsaDataì— ì±„ì›Œë„£ëŠ”ë‹¤.
+	WSAData wsaData;
+	if(::WSAStartup(MAKEWORD(2,2), &wsaData) != 0)
 		return 0;
 
-	// 1. Client Socket ¸¸µé±â
+	// 1. Client Socket ë§Œë“¤ê¸°
 	SOCKET clientSocket = ::socket(AF_INET, SOCK_STREAM, 0);
+	if (clientSocket == INVALID_SOCKET)
 	{
-		int32 errorCode = ::WSAGetLastError();
+		int errorCode = ::WSAGetLastError();
 		cout << "Socket Error : " << errorCode << endl;
 
 		return 0;
 	}
 
-	// 2. Server Á¤º¸(IP, Æ÷Æ®¹øÈ£)
+	// 2. Server ì •ë³´(IP, í¬íŠ¸ë²ˆí˜¸)
 	SOCKADDR_IN serverAddr;
-	::memset(&serverAddr, 0, sizeof(serverAddr));
+	::memset(&serverAddr,0,sizeof(serverAddr));
 	serverAddr.sin_family = AF_INET; // IPv4
-	::inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr); // 127.0.0.1 :  ÀÚ±â pc ÁÖ¼Ò
-	serverAddr.sin_port = ::htons(7777); //ºò¿£µğ¾ğ Ç¥±â¹ıÀ¸·Î ¹Ù²Ş
-
-	// 3. ¿¬°á
+	inet_pton(AF_INET,"127.0.0.1", &serverAddr.sin_addr); // 127.0.0.1 : ìê¸° PC ì£¼ì†Œ
+	serverAddr.sin_port = ::htons(7777); // ë¹…ì—”ë””ì–¸ í‘œê¸°ë²•ìœ¼ë¡œ ë°”ê¿ˆ
+	
+	// 3. ì—°ê²°
 	if (::connect(clientSocket, (SOCKADDR*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
 	{
-		int32 errorCode = ::WSAGetLastError();
+		int errorCode = ::WSAGetLastError();
 		cout << "Socket Error : " << errorCode << endl;
 
 		return 0;
 	}
 
-	cout << "Connet To Server!" << endl;
+	cout << "Connet To Server!!" << endl;
 
 	while (true)
 	{
 
 	}
 
+	// ì†Œì¼“ ë‹«ê¸°
 	::closesocket(clientSocket);
 	::WSACleanup();
-
 
 	return 0;
 }

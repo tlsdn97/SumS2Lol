@@ -1,14 +1,13 @@
 #include "framework.h"
 
+
 class Player
 {
 public:
-
-	Player() { cout << "PlayerÀÇ »ı¼ºÀÚ È£Ãâ" << endl; }
-	~Player() { cout << "PlayerÀÇ ¼Ò¸êÀÚ È£Ãâ" << endl; }
+	Player() { cout << "Playerì˜ ìƒì„±ì í˜¸ì¶œ" << endl; }
+	~Player() { cout << "Playerì˜ ì†Œë©¸ì í˜¸ì¶œ" << endl; }
 
 public:
-
 	int _hp = 0;
 	int _atk = 0;
 };
@@ -16,22 +15,20 @@ public:
 class Knight : public Player
 {
 public:
-
-	Knight() { cout << "KnightÀÇ »ı¼ºÀÚ È£Ãâ" << endl; }
-	~Knight() { cout << "KnightÀÇ ¼Ò¸êÀÚ È£Ãâ" << endl; }
+	Knight() { cout << "Knightì˜ ìƒì„±ì í˜¸ì¶œ" << endl; }
+	~Knight() { cout << "Knightì˜ ì†Œë©¸ì í˜¸ì¶œ" << endl; }
 
 public:
-
 	int _stamina = 0;
 };
 
 int main()
 {
 	ThreadManager::Create();
-	// ¸Ş¸ğ¸® ´©¼ö ¹ß»ı-> 7ÀÏ¸¶´Ù Á¡°ËÇØ¼­ ÇØÁ¦
-	// ¸Ş¸ğ¸® ¿À¿° ¹ß»ı-> ÃßÀû
+	// ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ë°œìƒ-> 7ì¼ë§ˆë‹¤ ì ê²€í•´ì„œ í•´ì œ
+	// ë©”ëª¨ë¦¬ ì˜¤ì—¼ ë°œìƒ-> ì¶”ì 
 
-	// StompAllocator¸¦ ÀÌ¿ëÇÏ¿© ¸Ş¸ğ¸® ¿À¿° ¹æÁö -> Debug
+	// StompAllocatorë¥¼ ì´ìš©í•˜ì—¬ ë©”ëª¨ë¦¬ ì˜¤ì—¼ ë°©ì§€ -> Debug
 	Player* p = xnew<Player>();
 
 	p->_hp = 10;
@@ -43,7 +40,7 @@ int main()
 
 	//p->_hp = 5;
 
-	// STLAllocator¸¦ ÀÌ¿ëÇÏ¿© STLÀÇ Container¸¦ ¾µ ¶§ ¸Ş¸ğ¸® ¿À¿° ¹× Çã»óÆ÷ÀÎÅÍ ¹æÁö
+	// STLAllocatorë¥¼ ì´ìš©í•˜ì—¬ STLì˜ Containerë¥¼ ì“¸ ë•Œ ë©”ëª¨ë¦¬ ì˜¤ì—¼ ë° í—ˆìƒí¬ì¸í„° ë°©ì§€
 	// Vector<Player> players = {Player(), Player(), Player()};
 
 	MemoryPool pool1(100);
