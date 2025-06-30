@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "RanmerTarget",
+			"Path": "..\\Source\\RanmerTarget.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "RanmerTargetEditor",
+			"Path": "..\\Source\\RanmerTargetEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
